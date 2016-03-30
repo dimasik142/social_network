@@ -1,9 +1,13 @@
 html {height: 100%;}
 
+header{
+	position:fixed;
+}
+
 body {
 	height: 100%;
 	font: 14px/24px Arial, Tahoma, sans-serif;
-	background-color: #fff;
+	background-color: #999;
 }
 ol, ul {list-style: none;}
 * {
@@ -55,7 +59,7 @@ a, a:hover {text-decoration: none;}
 
 #touch-menu {display: none;}
 
-@media (max-width: 768px) {
+@media (max-width: 975px) {
 	header{
 		position: fixed;
 		top: 0;
@@ -91,5 +95,19 @@ a, a:hover {text-decoration: none;}
 	}
 }
 
+.main_window{
+	border-top: 55px solid #999; 
+	width: 958px;
+	height: 1000px;
+	background: #fff;
+}
 
+.title{
+	white-space:pre;
+	font-size: 20px;
+	color:red;
+	background: #F0EAD5;
+	height: 35px;
+	border-top: 5px solid #F0EAD5;
+}
 
