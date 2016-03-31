@@ -7,7 +7,7 @@ header{
 body {
 	height: 100%;
 	font: 14px/24px Arial, Tahoma, sans-serif;
-	background-color: #999;
+	background-color: #fff;
 }
 ol, ul {list-style: none;}
 * {
@@ -96,8 +96,10 @@ a, a:hover {text-decoration: none;}
 }
 
 .main_window{
-	border-top: 55px solid #999; 
-	width: 958px;
+	border-top: 55px solid #fff; 
+	border-left: 1px solid #D3C6C6;
+	border-right: 1px solid #D3C6C6;
+	width: 960px;
 	height: 1000px;
 	background: #fff;
 }
@@ -112,10 +114,14 @@ a, a:hover {text-decoration: none;}
 }
 
 .photo{
-	background: green;
+	border-top: 1px solid #D3C6C6;
+	border-right: 1px solid #D3C6C6;
+	border-left: 1px solid #D3C6C6;
+	border-bottom: 1px solid #D3C6C6;
+	
 	margin: 20px;
 	width: 400px;
-	height: 400px;
+	height: 270px;
 }
 
 #lena{
