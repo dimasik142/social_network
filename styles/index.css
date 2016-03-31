@@ -111,3 +111,20 @@ a, a:hover {text-decoration: none;}
 	border-top: 5px solid #F0EAD5;
 }
 
+.photo{
+	background: green;
+	margin: 20px;
+	width: 400px;
+	height: 400px;
+}
+
+#lena{
+	text-align: center;
+}
+
+#lena_foto{
+	text-align: center;
+	width: 94%;
+	height: auto;
+	margin-top: 10px;
+}
