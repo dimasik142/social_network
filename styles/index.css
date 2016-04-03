@@ -118,10 +118,10 @@ a, a:hover {text-decoration: none;}
 	border-right: 1px solid #D3C6C6;
 	border-left: 1px solid #D3C6C6;
 	border-bottom: 1px solid #D3C6C6;
-	
 	margin: 20px;
 	width: 400px;
 	height: 270px;
+	float: left;
 }
 
 #lena{
@@ -133,4 +133,18 @@ a, a:hover {text-decoration: none;}
 	width: 94%;
 	height: auto;
 	margin-top: 10px;
+}
+
+.information{
+    width:150px;
+    height:250px;
+    float: left;
+    position: relative; 
+    left: 20px;
+    top : 25px;
+    text-align: center-left;
+    font-size: 17px;
+	color:#444;
+	line-height: 1.5
+  
 }
