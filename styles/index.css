@@ -113,23 +113,28 @@ a, a:hover {text-decoration: none;}
 	border-top: 5px solid #F0EAD5;
 }
 
-.photo{
+.div_photo{
 	border-top: 1px solid #D3C6C6;
 	border-right: 1px solid #D3C6C6;
 	border-left: 1px solid #D3C6C6;
 	border-bottom: 1px solid #D3C6C6;
+	background: #fff;
 	margin: 20px;
 	width: 400px;
-	height: 270px;
-	float: left;
+	height: auto;
 }
 
 #lena{
 	text-align: center;
 }
 
-#lena_foto{
-	text-align: center;
+#photo_low_quality{
+	width: 300px;
+	height: auto;
+	margin-top: 10px;
+}
+
+#photo{
 	width: 94%;
 	height: auto;
 	margin-top: 10px;
