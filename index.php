@@ -7,27 +7,43 @@
  */
 class User
 {
-    private $name = "Lena";
-    private $surename = "Telesh";
+    private $name = "Олена";
+    private $surename = "Телеш";
     private $sex = "girl";
     private $activity = true;
-    private $city = "";
-    private $date_of_birth = [
-        "data" => 0,
-        "month" => 0,
-        "year" => 0,
-        "age" => 0
-    ];
-    private
+    private $city = "Київ";
 
+    private $date_of_birth = array(
+        "data" => 5,
+        "month" => "03",
+        "year" => 1997
+    );
+/*
+    private $films = [
+        [0]=>"Spiderman",
+        [1]=>"Superman",
+        [2]=>"Aroneman",
+        [3]=>"Speadman",
+        [4]=>"Lolman"
+    ];
+    */
     function get_age(){
-        //$this->date_of_birth["age"] = 2016 - $this->date_of_birth["year"];
         return (2016 - $this->date_of_birth["year"]);
+    }
+
+    function set_information(){
+        echo'
+        Місто:          '.$this->city.'           </p>
+        Дата народження:    '.$this->date_of_birth["data"].'.'.$this->date_of_birth["month"].'.'.$this->date_of_birth["year"].' ( '.$this->get_age().'  років )                        </p>
+        Мови:</p>
+        Улюблені фільми:
+        ';
+
     }
 
     function set_name(){
         if ($this->activity)
-            echo'<div class ="title">                              '.$this->name.' '.$this->surename.'                                                                                     			 Online</div>';
+            echo'<div class ="title">                              '.$this->name.' '.$this->surename.'                                                                                      		 Online</div>';
         else
             echo'<div class ="title">                              '.$this->name.' '.$this->surename.'                                                                                  			 </div>';
     }
@@ -106,10 +122,9 @@ class User
                 ?>
             </div>
             <div class="information">
-                Місто:</p>
-                Дата народження:</p>
-                Мови:</p>
-                Улюблені фільми:
+                <?php
+                    $user->set_information();
+                ?>
             </div>
         </div>
     </div>
