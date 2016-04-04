@@ -7,36 +7,48 @@
  */
 class User
 {
-    private $name = "lena";
+    private $name = "Lena";
     private $surename = "Telesh";
     private $sex = "girl";
+    private $activity = true;
+    private $city = "";
+    private $date_of_birth = [
+        "data" => 0,
+        "month" => 0,
+        "year" => 0,
+        "age" => 0
+    ];
+    private
 
-    function set_name(){
-       echo'<div class ="title">       $this->name                     														 Online</div>';
-
+    function get_age(){
+        //$this->date_of_birth["age"] = 2016 - $this->date_of_birth["year"];
+        return (2016 - $this->date_of_birth["year"]);
     }
 
-    function set_photo()
-    {
-        $photo_file = "lena.jpg";
+    function set_name(){
+        if ($this->activity)
+            echo'<div class ="title">                              '.$this->name.' '.$this->surename.'                                                                                     			 Online</div>';
+        else
+            echo'<div class ="title">                              '.$this->name.' '.$this->surename.'                                                                                  			 </div>';
+    }
+
+    function set_photo(){
+        $photo_file = "photo/lena3.jpg";
         $imsize = getimagesize($photo_file);
         $height = $imsize[1];
         $width = $imsize[0];
         if ($width < 250) {
-            echo '<p id ="lena"><img src="lena.jpg" id ="photo_low_quality"></p>';
+            echo '<p id ="lena"><img src="photo/lena3.jpg" id ="photo_low_quality"></p>';
         }
         else
-            echo '<p id ="lena"><img src="lena.jpg" id ="photo"></p>';
-    }
-
-    function enter_name()
-    {
-        echo  $this->name;
+            echo '<p id ="lena"><img src="photo/lena3.jpg" id ="photo"></p>';
     }
 }
 ?>
 
-
+<?php
+    $user = new User();
+?>
 <!DOCTYPE html>
 <html >
 <head>
@@ -84,13 +96,20 @@ class User
         </nav>
     </header>
     <div class="main_window">
-        <div class ="title">      Taras Ivanov                     														 Online</div>
+         <?php
+            $user->set_name();
+        ?>
         <div>
             <div class ="div_photo">
                 <?php
-                    $lena = new User();
-                    $lena->set_photo();
+                    $user->set_photo();
                 ?>
+            </div>
+            <div class="information">
+                Місто:</p>
+                Дата народження:</p>
+                Мови:</p>
+                Улюблені фільми:
             </div>
         </div>
     </div>

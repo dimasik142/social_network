@@ -118,7 +118,6 @@ a, a:hover {text-decoration: none;}
 	border-right: 1px solid #D3C6C6;
 	border-left: 1px solid #D3C6C6;
 	border-bottom: 1px solid #D3C6C6;
-	background: #fff;
 	margin: 20px;
 	width: 400px;
 	height: auto;
@@ -143,13 +142,12 @@ a, a:hover {text-decoration: none;}
 .information{
     width:150px;
     height:250px;
-    float: left;
+	left: 450px;
+	top : -400px;
+	float: left;
     position: relative; 
-    left: 20px;
-    top : 25px;
     text-align: center-left;
     font-size: 17px;
 	color:#444;
-	line-height: 1.5
-  
+	line-height: 1.5;
 }
