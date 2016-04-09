@@ -6,6 +6,8 @@ class User
     private $sex = "girl";
     private $activity = true;
     private $city = "Київ";
+    private $password = "pass";
+    private $email = "email";
 
     private $date_of_birth = array(
         "data" => 5,
@@ -23,6 +25,13 @@ class User
 
     function get_age(){
         return (2016 - $this->date_of_birth["year"]);
+    }
+
+    function get_information_by_registration($user_name,$user_surename,$user_email,$user_password){
+        $this->name = $user_name;
+        $this->surename = $user_surename;
+        $this->email = $user_email;
+        $this->password = $user_password;
     }
 
     function set_information(){

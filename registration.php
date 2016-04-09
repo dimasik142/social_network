@@ -8,19 +8,20 @@
 </head>
 <body>
     Введіть імя:
-    <input type="text" name="username" size="15" maxlength="30" required>
+    <input type="text" name="User_name" size="15" maxlength="30" required>
     Введыть прізвище:
-    <input type="text" name="ConfirmPassword" size="15" maxlength="30" required>
+    <input type="text" name="User_surename" size="15" maxlength="30" required>
     Ведіть емейл
-    <input type="email" name="ConfirmPassword" size="15" maxlength="30" required>
+    <input type="email" name="User_email" size="15" maxlength="30" required>
     Введіть пароль
-    <input type="password" name="ConfirmPassword" size="15" maxlength="30" required>
-    повторіть пароль
-    <input type="password" name="ConfirmPassword" size="15" maxlength="30" required>
+    <input type="password" name="User_password" size="15" maxlength="30" required>
 
     <input type="image" src="photo/play.png">
 </body>
 
 <?php
-    echo $_POST["username"];
+    include 'User_class.php';
+    $user = new User();
+    $user->get_information_by_registration( $_POST["User_name"], $_POST["User_surename"], $_POST["User_email"], $_POST["User_password"]);
+    mail("dimasik1@mail.ua", "My Subject", "Line 1\nLine 2\nLine 3");
 ?>
