@@ -15,13 +15,29 @@
     <input type="email" name="User_email" size="15" maxlength="30" required>
     Введіть пароль
     <input type="password" name="User_password" size="15" maxlength="30" required>
-
-    <input type="image" src="photo/play.png">
+    Повторіть пароль
+    <input type="password_repeat" name="User_password" size="15" maxlength="30" required>
+    <a href="index.php"><input type="image" src="photo/play.png"></a>
 </body>
 
 <?php
     include 'User_class.php';
+
     $user = new User();
+   // Перевіка правильності вводу паролю
+
+    if ($_POST["password"] == $_POST["password_repeat"])
+       echo "Паролі співпадають";
+    else
+        echo" Паролі не співпадають";
+    if (strlen($_POST["password"]) < 6 or strlen($_POST["password"]) > 15)
+        echo "Пароль повинен містити від 6 до 20 символів";
+    else
+        echo "Пароль хороший";
+    
+
+
+
+
     $user->get_information_by_registration( $_POST["User_name"], $_POST["User_surename"], $_POST["User_email"], $_POST["User_password"]);
-    mail("dimasik1@mail.ua", "My Subject", "Line 1\nLine 2\nLine 3");
 ?>
