@@ -1,0 +1,22 @@
+#friend_block{
+    float : left;
+	border-bottom: 1px solid #D3C6C6; 
+	border-right: 1px solid #D3C6C6;
+	width: 319px;
+	height: 280px;
+	
+}
+#picture{
+	width: 319px;
+	height: 180px;
+}
+#activity{
+	text-align: center;
+    word-spacing: 23px;
+	width: 319px;
+	height: 100px;
+}
+button#border{
+	border: 0px solid #fff;
+    background-color: #fff;
+}
