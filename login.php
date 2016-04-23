@@ -26,7 +26,6 @@
         document.cookie = "email_log =" + document.getElementById("User_email").value;
         document.location.href = "check_the_logining.php";
     }
-
 </script>
 
 <?php

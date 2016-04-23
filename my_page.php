@@ -1,6 +1,8 @@
 <?php
     include 'User_class.php';
     $user = new User();
+    setcookie("email_log","");
+    setcookie("password_log","");
 ?>
 
 <!DOCTYPE html>
@@ -43,9 +45,9 @@
                 <li><a href="index.php">Моя сторінка</a></li>
                 <li><a href="biografi.php">Друзі</a></li>
                 <li><a href="mgu.php">Повідомлення</a></li>
-                <li><a href="">Спільноти</a></li>
-                <li><a href="registration.php">Новини</a></li>
-                <li><a href="forum.php">Налаштування</a></li>
+                <li><a href="login.php">Новини друі</a></li>
+                <li><a href="registration.php">Налаштування</a></li>
+                <li><a href="exit.php">Вихід</a></li>
             </ul>
         </nav>
     </header>
@@ -72,4 +74,5 @@
 
 </div>
 </body>
+
 
