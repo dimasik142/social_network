@@ -32,6 +32,18 @@ ol, ul {list-style: none;}
     width: 960px;
     height: 200px;
 }
+
+#button_registration{
+    padding-top: 10px;
+    background: rgba(255,255,255,0.80);
+    box-shadow: 0 1px 4px rgba(0,0,0,1);
+    border: none;
+    padding: 12px 35px;
+    border-radius: 15px;
+    font-size: 12px;
+    outline: none;
+}
+
 .bl_form input {
     padding-top: 10px;
     background: rgba(255,255,255,0.80);

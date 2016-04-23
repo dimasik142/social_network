@@ -26,7 +26,6 @@
 </body>
 
 <script type="text/javascript">
-
     function getXmlHttp(){
         var xmlhttp;
         try {
@@ -43,7 +42,6 @@
         }
         return xmlhttp;
     }
-
     function check_password_1 () {
         var req = getXmlHttp()
         var pass = document.getElementById('pass')
@@ -79,10 +77,9 @@
                 }
             }
         }
-        req.open('GET', 'vote.php', true);
+        req.open('GET', 'ajax/vote.php', true);
         req.send(null);  // отослать запрос
     }
-
 </script>
 
 <?php
@@ -90,6 +87,3 @@ include 'User_class.php';
 $user = new User();
 $user->get_information_by_registration( $_POST["User_name"], $_POST["User_surename"], $_POST["User_email"], $_POST["User_password"]);
 ?>
-
-
-
