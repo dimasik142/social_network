@@ -3,6 +3,7 @@
     $user = new User();
     setcookie("email_log","");
     setcookie("password_log","");
+    $user->get_information_from_db($_COOKIE["email"],$_COOKIE["password"]);
 ?>
 <script>
     function getCookie(name) {
@@ -14,6 +15,7 @@
     if(getCookie("email") == null || getCookie("password") == null)
         document.location.href = "index.php"
 </script>
+
 <!DOCTYPE html>
 <html >
 <head>

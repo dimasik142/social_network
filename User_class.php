@@ -4,7 +4,6 @@ class User
     private $id = 0;
     private $name = "Олена";
     private $surename = "Телеш";
-    private $sex = "girl";
     private $activity = true;
     private $city = "Київ";
     private $password = "pass";
@@ -77,18 +76,21 @@ class User
         return $connection;
     }
 
-    function get_information_from_db(){
+    function get_information_from_db($email,$password){
         $connect = $this->connect_bd();
         $sql = "SELECT * FROM Information";
         if ($res = $connect->query($sql)) {
             if ($res->num_rows > 0) {
                 $information_array = $res->fetch_all(MYSQLI_ASSOC);
                 foreach($information_array as $item):
-                    $this->name = $item['name'];
-                    $this->surename = $item['surename'];
-                    $this->sity = $item['sity'];
-                    $this->email = $item['email'];
-                    $this->password = $item['password'];
+                    if(($email == $item['email']) && ($password == $item['password'])) {
+                        $this->name = $item['name'];
+                        $this->surename = $item['surename'];
+                        $this->sity = $item['sity'];
+                        $this->email = $item['email'];
+                        $this->password = $item['password'];
+                        return true;
+                    }
                 endforeach;
             }
         }
@@ -114,5 +116,9 @@ class User
         }
         return 1;
     }
+
+
+
+
 }
 ?>
