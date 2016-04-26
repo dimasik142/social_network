@@ -29,14 +29,6 @@ class User
         return (2016 - $this->date_of_birth["year"]);
     }
 
-    function get_information_by_registration($user_name, $user_surename, $user_email, $user_password)
-    {
-        $this->name = $user_name;
-        $this->surename = $user_surename;
-        $this->email = $user_email;
-        $this->password = $user_password;
-    }
-
     function set_information()
     {
         echo '
@@ -85,8 +77,7 @@ class User
         return $connection;
     }
 
-    function get_information_from_db()
-    {
+    function get_information_from_db(){
         $connect = $this->connect_bd();
         $sql = "SELECT * FROM Information";
         if ($res = $connect->query($sql)) {
@@ -101,6 +92,27 @@ class User
                 endforeach;
             }
         }
+    }
+
+    function set_information_to_database($name,$surename,$email,$password){
+        $connect = connect_bd();
+        $insert_sql = "INSERT INTO Information (name, surename, email, password)" ."VALUES('{$name}', '{$surename}', '{$email}', '{$password}');";
+        $connect->query($insert_sql);
+    }
+
+    function search_email_in_databese($email){
+        $connect = $this->connect_bd();
+        $sql = "SELECT * FROM Information";
+        if ($res = $connect->query($sql)) {
+            if ($res->num_rows > 0) {
+                $information_array = $res->fetch_all(MYSQLI_ASSOC);
+                foreach($information_array as $item):
+                    if ($email == $item['email'])
+                        return 0;
+                endforeach;
+            }
+        }
+        return 1;
     }
 }
 ?>

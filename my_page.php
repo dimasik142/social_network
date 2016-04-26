@@ -4,7 +4,16 @@
     setcookie("email_log","");
     setcookie("password_log","");
 ?>
-
+<script>
+    function getCookie(name) {
+        var matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+    if(getCookie("email") == null || getCookie("password") == null)
+        document.location.href = "index.php"
+</script>
 <!DOCTYPE html>
 <html >
 <head>
