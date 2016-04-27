@@ -1,3 +1,15 @@
+<script>
+    function getCookie(name) {
+        var matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+    if (getCookie("email") != null || getCookie("password" != null))
+        alert("Для того щоб зареєструватись потрібно вийти зі своєї сторінки!!!");
+        document.location.href = "my_page.php"
+</script>
+
 <!DOCTYPE html>
 <html >
 <head>
@@ -11,9 +23,9 @@
     <div class="main_window">
         Реєстрація </p><br>
         <form class="bl_form">
-            <input type="text" name="User_name" size="15" maxlength="35" required placeholder="Iм'я"></p><br>
-            <input type="text" name="User_surename" size="15" maxlength="35" required placeholder="Прізвище"></p><br>
-            <input type="email" name="User_email" size="15" maxlength="35" required placeholder="Eлектронна скринька"></p><br>
+            <input type="text" name="User_name"id ="name" size="15" maxlength="35" required placeholder="Iм'я"></p><br>
+            <input type="text" name="User_surename" id ="surename" size="15" maxlength="35" required placeholder="Прізвище"></p><br>
+            <input type="email" name="User_email" id="email" size="15" maxlength="35" required placeholder="Eлектронна скринька"></p><br>
             <input type="password" name="User_password" id="pass" size="15" maxlength="35" required placeholder="Пароль"></p><br>
             <input type="password" name="User_password" id="pass_repeat" size="15" maxlength="35" required placeholder="Повторіть пароль"></p><br>
             <input type="button"  id="button_registration" value="Зареєструватись" onclick="check_password_1()" >
@@ -21,11 +33,10 @@
 
     </div>
 </div>
-
-
 </body>
 
 <script type="text/javascript">
+
     function getXmlHttp(){
         var xmlhttp;
         try {
@@ -42,10 +53,11 @@
         }
         return xmlhttp;
     }
+
     function check_password_1 () {
-        var req = getXmlHttp()
-        var pass = document.getElementById('pass')
-        var pass_repeat = document.getElementById('pass_repeat')
+        var req = getXmlHttp();
+        var pass = document.getElementById('pass');
+        var pass_repeat = document.getElementById('pass_repeat');
         req.onreadystatechange = function() {
             if (req.readyState == 4) {
                 if(req.status == 200  ) {
@@ -56,7 +68,7 @@
                     }
                     else{
                         if(pass.value == ""){
-                            alert("Пароль не введений! Введіть будь ласка пароль. ")
+                            alert("Пароль не введений! Введіть будь ласка пароль. ");
                             pass.value = "";
                             pass_repeat.value = "";
                         }
@@ -71,19 +83,17 @@
                             pass_repeat.value = "";
                         }
                         if(pass.value.length <=20 && pass.value.length >=6 && pass.value != "") {
-                            document.location.href = "index.php";
+                            document.location.href = "check_the_registration.php";
+                            document.cookie = "name_registration =" + document.getElementById('name').value ;
+                            document.cookie = "surename_registration =" + document.getElementById("surename").value;
+                            document.cookie = "email_registration =" + document.getElementById('email').value ;
+                            document.cookie = "password_registration =" + document.getElementById("pass").value;
                         }
                     }
                 }
             }
-        }
+        };
         req.open('GET', 'ajax/vote.php', true);
         req.send(null);  // отослать запрос
     }
 </script>
-
-<?php
-include 'User_class.php';
-$user = new User();
-$user->get_information_by_registration( $_POST["User_name"], $_POST["User_surename"], $_POST["User_email"], $_POST["User_password"]);
-?>

@@ -1,7 +1,20 @@
 <?php
     include 'User_class.php';
     $user = new User();
+    setcookie("email_log","");
+    setcookie("password_log","");
+    $user->get_information_from_db($_COOKIE["email"],$_COOKIE["password"]);
 ?>
+<script>
+    function getCookie(name) {
+        var matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+    if(getCookie("email") == null || getCookie("password") == null)
+        document.location.href = "index.php"
+</script>
 
 <!DOCTYPE html>
 <html >
@@ -43,9 +56,9 @@
                 <li><a href="index.php">Моя сторінка</a></li>
                 <li><a href="biografi.php">Друзі</a></li>
                 <li><a href="mgu.php">Повідомлення</a></li>
-                <li><a href="">Спільноти</a></li>
-                <li><a href="registration.php">Новини</a></li>
-                <li><a href="forum.php">Налаштування</a></li>
+                <li><a href="login.php">Новини друі</a></li>
+                <li><a href="registration.php">Налаштування</a></li>
+                <li><a href="exit.php">Вихід</a></li>
             </ul>
         </nav>
     </header>
@@ -72,4 +85,5 @@
 
 </div>
 </body>
+
 

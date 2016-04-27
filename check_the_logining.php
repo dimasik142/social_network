@@ -26,9 +26,8 @@ if ($res = $connect->query($sql)) {
             $email = $item['email'];
             $password = $item['password'];
             if(($email == $email_logining) and ($password == $password_logining)){
-                setcookie('email', $email);
-                setcookie('password', $password);
-                require"my_page.php";
+                setcookie('email', $email,time()+360000000);
+                setcookie('password', $password,time()+360000000);
                 $result = true;
             }
         endforeach;
@@ -37,10 +36,6 @@ if ($res = $connect->query($sql)) {
         }
     }
 }
-echo $_COOKIE["email_log"];
-echo $_COOKIE["password_log"];
-echo $_COOKIE["email"];
-echo $_COOKIE["password"];
 ?>
 
 <script type="text/javascript">
@@ -53,9 +48,13 @@ echo $_COOKIE["password"];
     }
 
     function get_home_page(){
-        if((getCookie("email_log") == getCookie("email")) && (getCookie("password_log") == getCookie("password"))  )
-        if ((getCookie("email_log") != "") && (getCookie("password_log") != ""))
-            document.location.href = "my_page.php";
+        if((getCookie("email_log") == getCookie("email")) && (getCookie("password_log") == getCookie("password"))) {
+            if ((getCookie("email_log") != "") && (getCookie("password_log") != "")) {
+                document.location.href = "my_page.php";
+            }
+        }
+        else
+            alert("Користувач з таким логіном і паролем не зареєстрований. Перевірте правильність вводу даних, або зареєструйтесь. ");
     }
     get_home_page();
 </script>
