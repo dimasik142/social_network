@@ -37,14 +37,17 @@ a, a:hover {text-decoration: none;}
 
 .container {
 	max-width: 960px;
-	margin: 0 auto;
+	margin:0 auto;
 }
 
 .nav,
 #touch-menu {
 	background: #3e4156;
 }
-.nav li {float: left;}
+.nav li {
+	float: left;
+	
+}
 .nav li a,
 #touch-menu {
 	display: block;
