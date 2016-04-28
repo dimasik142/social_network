@@ -68,7 +68,7 @@ class User
         }
     }
 
-    private function connect_bd(){
+    function connect_bd_OpenServer(){
         $connection = new mysqli('localhost', 'root', '', 'User');
         if ($connection->connect_error) {
             die('Connect Error :' . $connection->connect_error);
@@ -76,7 +76,21 @@ class User
         return $connection;
     }
 
-    function get_information_from_db($email,$password){
+    function connect_bd_MAMP(){
+        $hostname = "localhost";
+        $username="root";
+        $password="root";
+        $db="social_network";
+        $connection = mysqli_connect(
+            $hostname,
+            $username,
+            $password,
+            $db
+        ) or die('Error connecting to databse');
+        return $connection;
+    }
+
+    private function get_information_from_db1($email,$password){
         $connect = $this->connect_bd();
         $sql = "SELECT * FROM Information";
         if ($res = $connect->query($sql)) {
@@ -96,13 +110,13 @@ class User
         }
     }
 
-    function set_information_to_database($name,$surename,$email,$password){
+    private function set_information_to_database1($name,$surename,$email,$password){
         $connect = connect_bd();
         $insert_sql = "INSERT INTO Information (name, surename, email, password)" ."VALUES('{$name}', '{$surename}', '{$email}', '{$password}');";
         $connect->query($insert_sql);
     }
 
-    function search_email_in_databese($email){
+    private function search_email_in_databese1($email){
         $connect = $this->connect_bd();
         $sql = "SELECT * FROM Information";
         if ($res = $connect->query($sql)) {
@@ -117,8 +131,69 @@ class User
         return 1;
     }
 
+    function get_information_from_db($email,$password){
 
+        $connect = $this->connect_bd_MAMP();
+        $sql_login = "SELECT * FROM logining_data";
 
+        $id = 0;
+        if ($res = $connect->query($sql_login)) {
+            if ($res->num_rows > 0) {
+                $information_array = $res->fetch_all(MYSQLI_ASSOC);
+                foreach($information_array as $item):
+                    if(($email == $item['email']) && ($password == $item['password'])) {
+                        $id = $item['id'];
+                        break;
+                    }
+                endforeach;
+            }
+        }
+        if($id == 0)
+            return false;
+        $sql_information = "SELECT * FROM user_information";
+        $connect->set_charset("utf8");
+        if ($res = $connect->query($sql_information)) {
+            if ($res->num_rows > 0) {
+                $information_array = $res->fetch_all(MYSQLI_ASSOC);
+                foreach($information_array as $item):
+                    if($id == $item['id']) {
+                        //echo  $item['name'];
+                        $this->name = $item['name'];
+                        $this->surename = $item['surename'];
+                        $this->city = $item['city'];
+                        $this->id = $item['id'];
+                        // день народження
+                        // фільми
+                        return true;
+                    }
+                endforeach;
+            }
+        }
+    }
+
+    function set_information_to_database($name,$surename,$email,$password){
+        $connect = $this->connect_bd_MAMP();
+        $connect_1 = $this->connect_bd_MAMP();
+        $insert_sql_info = "INSERT INTO user_information (name, surename)" ."VALUES('{$name}', '{$surename}');";
+        $insert_sql_login = "INSERT INTO logining_data (email, password)" ."VALUES('{$email}', '{$password}');";
+        $connect->query($insert_sql_info);
+        $connect_1->query($insert_sql_login);
+    }
+
+    function search_email_in_databese($email){
+        $connect = $this->connect_bd_MAMP();
+        $sql = "SELECT * FROM logining_data";
+        if ($res = $connect->query($sql)) {
+            if ($res->num_rows > 0) {
+                $information_array = $res->fetch_all(MYSQLI_ASSOC);
+                foreach($information_array as $item):
+                    if ($email == $item['email'])
+                        return 0;
+                endforeach;
+            }
+        }
+        return 1;
+    }
 
 }
 ?>

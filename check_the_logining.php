@@ -6,19 +6,15 @@
  * Time: 23:25
  */
 
-function connect_bd(){
-    $connection = new mysqli('localhost', 'root', '', 'User');
-    if ($connection->connect_error) {
-        die('Connect Error :' . $connection->connect_error);
-    }
-    return $connection;
-}
+include 'User_class.php';
+$user = new User();
 
 $email_logining = $_COOKIE["email_log"];
 $password_logining = $_COOKIE["password_log"];
-$connect = connect_bd();
+$connect = $user->connect_bd_MAMP(); // MAMP
+//$connect = $user->connect_bd_OpenServer(); //OpenServer
 $result = false;
-$sql = "SELECT * FROM Information";
+$sql = "SELECT * FROM logining_data";
 if ($res = $connect->query($sql)) {
     if ($res->num_rows > 0) {
         $information_array = $res->fetch_all(MYSQLI_ASSOC);

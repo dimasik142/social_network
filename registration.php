@@ -21,79 +21,52 @@
 <body>
 <div class="container">
     <div class="main_window">
-        Реєстрація </p><br>
+        <p> Реєстрація </p><br>
         <form class="bl_form">
             <input type="text" name="User_name"id ="name" size="15" maxlength="35" required placeholder="Iм'я"></p><br>
             <input type="text" name="User_surename" id ="surename" size="15" maxlength="35" required placeholder="Прізвище"></p><br>
             <input type="email" name="User_email" id="email" size="15" maxlength="35" required placeholder="Eлектронна скринька"></p><br>
             <input type="password" name="User_password" id="pass" size="15" maxlength="35" required placeholder="Пароль"></p><br>
             <input type="password" name="User_password" id="pass_repeat" size="15" maxlength="35" required placeholder="Повторіть пароль"></p><br>
-            <input type="button"  id="button_registration" value="Зареєструватись" onclick="check_password_1()" >
+            <input type="button"  id="button_registration" value="Зареєструватись" onclick="check_password()" >
         </form>
-
     </div>
 </div>
 </body>
 
 <script type="text/javascript">
-
-    function getXmlHttp(){
-        var xmlhttp;
-        try {
-            xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-        } catch (e) {
-            try {
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            } catch (E) {
-                xmlhttp = false;
-            }
-        }
-        if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
-            xmlhttp = new XMLHttpRequest();
-        }
-        return xmlhttp;
-    }
-
-    function check_password_1 () {
-        var req = getXmlHttp();
+    function check_password() {
         var pass = document.getElementById('pass');
         var pass_repeat = document.getElementById('pass_repeat');
-        req.onreadystatechange = function() {
-            if (req.readyState == 4) {
-                if(req.status == 200  ) {
-                    if (pass.value != pass_repeat.value) {
-                        pass.value = "";
-                        pass_repeat.value = "";
-                        alert("Паролі не співпадають! Повторіть будь ласка ввід паролю. ")
-                    }
-                    else{
-                        if(pass.value == ""){
-                            alert("Пароль не введений! Введіть будь ласка пароль. ");
-                            pass.value = "";
-                            pass_repeat.value = "";
-                        }
-                        if(pass.value.length <6 && pass.value.length != 0) {
-                            alert("Пароль занадто котокий, пароль повинен містити більше 6 знаків. Введіть будь ласка пароль. ");
-                            pass.value = "";
-                            pass_repeat.value = "";
-                        }
-                        if(pass.value.length >20) {
-                            alert("Пароль занадто довгий, пароль повинен містити менше 20 знаків. Введіть будь ласка пароль. ");
-                            pass.value = "";
-                            pass_repeat.value = "";
-                        }
-                        if(pass.value.length <=20 && pass.value.length >=6 && pass.value != "") {
-                            document.location.href = "check_the_registration.php";
-                            document.cookie = "name_registration =" + document.getElementById('name').value ;
-                            document.cookie = "surename_registration =" + document.getElementById("surename").value;
-                            document.cookie = "email_registration =" + document.getElementById('email').value ;
-                            document.cookie = "password_registration =" + document.getElementById("pass").value;
-                        }
-                    }
-                }
+
+        if (pass.value != pass_repeat.value) {
+            pass.value = "";
+            pass_repeat.value = "";
+            alert("Паролі не співпадають! Повторіть будь ласка ввід паролю. ")
+        }
+        else{
+            if(pass.value == ""){
+                alert("Пароль не введений! Введіть будь ласка пароль. ");
+                pass.value = "";
+                pass_repeat.value = "";
             }
-        };
-        req.open('GET', 'ajax/vote.php', true);
-        req.send(null);  // отослать запрос
+            if(pass.value.length <6 && pass.value.length != 0) {
+                alert("Пароль занадто котокий, пароль повинен містити більше 6 знаків. Введіть будь ласка пароль. ");
+                pass.value = "";
+                pass_repeat.value = "";
+            }
+            if(pass.value.length >20) {
+                alert("Пароль занадто довгий, пароль повинен містити менше 20 знаків. Введіть будь ласка пароль. ");
+                pass.value = "";
+                pass_repeat.value = "";
+            }
+            if(pass.value.length <=20 && pass.value.length >=6 && pass.value != "") {
+                document.location.href = "check_the_registration.php";
+                document.cookie = "name_registration =" + document.getElementById('name').value ;
+                document.cookie = "surename_registration =" + document.getElementById("surename").value;
+                document.cookie = "email_registration =" + document.getElementById('email').value ;
+                document.cookie = "password_registration =" + document.getElementById("pass").value;
+            }
+        }
     }
 </script>
