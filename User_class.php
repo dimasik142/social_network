@@ -133,7 +133,8 @@ class User
 
     function get_information_from_db($email,$password){
 
-        $connect = $this->connect_bd_MAMP();
+        $connect = $this->connect_bd_MAMP(); // MAMP
+        //$connect = $this->connect_bd_OpenServer() //OpenServer
         $sql_login = "SELECT * FROM logining_data";
 
         $id = 0;
@@ -172,18 +173,19 @@ class User
     }
 
     function set_information_to_database($name,$surename,$email,$password){
-        $connect = $this->connect_bd_MAMP();
-        $connect_1 = $this->connect_bd_MAMP();
+        $connect = $this->connect_bd_MAMP(); // MAMP
+        //$connect = $this->connect_bd_OpenServer() //OpenServer
+
         $connect->set_charset("utf8");
-        $connect_1->set_charset("utf8");
         $insert_sql_info = "INSERT INTO user_information (user_name, surename)" ."VALUES('{$name}', '{$surename}');";
         $insert_sql_login = "INSERT INTO logining_data (email, password)" ."VALUES('{$email}', '{$password}');";
         $connect->query($insert_sql_info);
-        $connect_1->query($insert_sql_login);
+        $connect->query($insert_sql_login);
     }
 
     function search_email_in_databese($email){
-        $connect = $this->connect_bd_MAMP();
+        $connect = $this->connect_bd_MAMP(); // MAMP
+        //$connect = $this->connect_bd_OpenServer() //OpenServer
         $sql = "SELECT * FROM logining_data";
         $connect->set_charset("utf8");
         if ($res = $connect->query($sql)) {
@@ -196,6 +198,13 @@ class User
             }
         }
         return 1;
+    }
+
+    function change_password ($email,$current_password,$new_password){
+        $connect =  $this->connect_bd_MAMP(); // MAMP
+        //$connect = $this->connect_bd_OpenServer() //OpenServer
+        $sql = "UPDATE logining_data SET password='{$new_password}' WHERE email = '{$email}' , password = '{$current_password}'";
+        $connect->query($sql);
     }
 
 }

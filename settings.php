@@ -7,6 +7,7 @@
  */
 
 ?>
+<script>alert(document.cookie);</script>
 <!DOCTYPE html>
 <html >
 <head>
@@ -46,35 +47,30 @@
         <nav>
             <ul class="nav clearfix">
                 <li><a href="index.php">Моя сторінка</a></li>
-                <li>
-                    <form name="search">
-                    <input type="search" placeholder="Пошук друзів" size="15" style="margin-top: 10px">
-                    </form>
-                </li>
                 <li><a href="biografi.php">Друзі</a></li>
-                <li><a href="mgu.php">Повідомлення</a></li>
-                <li><a href="photo.php">Спільноти</a></li>
-                <li><a href="registration.php">Новини</a></li>
-                <li><a href="forum.php">Налаштування</a></li>
+                <li><a href="registration.php">Повідомлення</a></li>
+                <li><a href="login.php">Новини друзі</a></li>
+                <li><a href="settings.php">Налаштування</a></li>
+                <li><a href="exit.php">Вихід</a></li>
             </ul>
         </nav>
     </header>
 <div class="main_window">
     <div class="main_block">
-      <h2> Изменить пароль</h2>
+      <h2> Змінити пароль</h2>
         <div class ="table_block">
         <br>
          <table >
            <form>
-           <tr><td>Старый пароль:</td><td><input type="text" name="" value=""></td></tr>
-           <tr><td>Новый пароль:</td><td><input type="text" name="" value=""></td></tr>
-           <tr><td>Повторите пароль:</td><td><input type="text" name="" value=""></td></tr>
+           <tr><td>Старий пароль:</td><td><input type="text" id="$current_password" name="" value=""></td></tr>
+           <tr><td>Новий пароль:</td><td><input type="text" id ="$new_password" name="" value=""></td></tr>
+           <tr><td>Повторіть пароль:</td><td><input type="text" id="$new_password_repeat" name="" value=""></td></tr>
            <tr><td></td><td align="left"><input type="button" value="Сохранить пароль"></td></tr>
            </form>
          </table>
         </div>
         <br>
-      <h2> Адрес вашей електронной почты </h2>
+      <h2> Адресa вашої електронної пошти </h2>
         <div class ="table_block">
         <br>
          <table >
@@ -84,21 +80,30 @@
            <tr><td></td><td align="left"><input type="button" value="Изменить адрес"></td></tr>
            </form>
          </table>
-        </div>
-        <br>
-        <h2> Номер вашего телефона </h2>
-        <div class ="table_block">
-        <br>
-         <table >
-           <form>
-           <tr><td>Текущий номер:</td><td>067*****43</td></tr>
-           <tr><td></td><td align="left"><input type="button" value="Изменить номер"></td></tr>
-           </form>
-         </table>
-        </div>
+
     </div>
 </div>
 </div>
-
-
 </body>
+
+<script>
+    function change_password(){
+        if()
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
