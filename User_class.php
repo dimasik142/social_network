@@ -158,7 +158,7 @@ class User
                 foreach($information_array as $item):
                     if($id == $item['id']) {
                         //echo  $item['name'];
-                        $this->name = $item['name'];
+                        $this->name = $item['user_name'];
                         $this->surename = $item['surename'];
                         $this->city = $item['city'];
                         $this->id = $item['id'];
@@ -174,7 +174,9 @@ class User
     function set_information_to_database($name,$surename,$email,$password){
         $connect = $this->connect_bd_MAMP();
         $connect_1 = $this->connect_bd_MAMP();
-        $insert_sql_info = "INSERT INTO user_information (name, surename)" ."VALUES('{$name}', '{$surename}');";
+        $connect->set_charset("utf8");
+        $connect_1->set_charset("utf8");
+        $insert_sql_info = "INSERT INTO user_information (user_name, surename)" ."VALUES('{$name}', '{$surename}');";
         $insert_sql_login = "INSERT INTO logining_data (email, password)" ."VALUES('{$email}', '{$password}');";
         $connect->query($insert_sql_info);
         $connect_1->query($insert_sql_login);
@@ -183,6 +185,7 @@ class User
     function search_email_in_databese($email){
         $connect = $this->connect_bd_MAMP();
         $sql = "SELECT * FROM logining_data";
+        $connect->set_charset("utf8");
         if ($res = $connect->query($sql)) {
             if ($res->num_rows > 0) {
                 $information_array = $res->fetch_all(MYSQLI_ASSOC);

@@ -14,7 +14,6 @@
         ));
         return matches ? decodeURIComponent(matches[1]) : undefined;
     }
-
     if(getCookie("email") == null || getCookie("password") == null)
         document.location.href = "index.php"
 </script>
@@ -58,9 +57,9 @@
             <ul class="nav clearfix">
                 <li><a href="index.php">Моя сторінка</a></li>
                 <li><a href="biografi.php">Друзі</a></li>
-                <li><a href="mgu.php">Повідомлення</a></li>
+                <li><a href="registration.php">Повідомлення</a></li>
                 <li><a href="login.php">Новини друзі</a></li>
-                <li><a href="registration.php">Налаштування</a></li>
+                <li><a href="settings.php">Налаштування</a></li>
                 <li><a href="exit.php">Вихід</a></li>
             </ul>
         </nav>

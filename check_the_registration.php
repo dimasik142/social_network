@@ -9,7 +9,6 @@ include 'User_class.php';
 $user = new User();
 if($user->search_email_in_databese($_COOKIE["email_registration"]) == 1) {
     $user->set_information_to_database($_COOKIE["name_registration"], $_COOKIE["surename_registration"],$_COOKIE["email_registration"], $_COOKIE["password_registration"]);
-
     setcookie("email", $_COOKIE["email_registration"]);
     setcookie("password", $_COOKIE["password_registration"]);
     setcookie("name_registration","");
