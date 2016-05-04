@@ -121,6 +121,7 @@ a, a:hover {text-decoration: none;}
 	margin: 20px;
 	width: 400px;
 	height: auto;
+	float: left;
 }
 
 #lena{
@@ -142,10 +143,9 @@ a, a:hover {text-decoration: none;}
 .information{
     width:450px;
     height:250px;
-	left: 450px;
-	top : -400px;
+    top :20;
 	float: left;
-    position: relative; 
+	position: relative; 
     text-align: center-left;
     font-size: 17px;
 	color:#444;
