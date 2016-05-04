@@ -27,21 +27,20 @@ ol, ul {list-style: none;}
     text-align: center;
     color: #000000;
     font-size: 18pt;
+    padding-top: 12px;
     position: relative;
+    left: 240px;
     top: 110px;
-    width: 960px;
-    height: 200px;
+    width: 480px;
+    height: 420px;
+    border: 1px solid #D3C6C6;
+
 }
 
 #button_registration{
-    padding-top: 10px;
-    background: rgba(255,255,255,0.80);
-    box-shadow: 0 1px 4px rgba(0,0,0,1);
-    border: none;
-    padding: 12px 35px;
-    border-radius: 15px;
-    font-size: 12px;
-    outline: none;
+    color: black;
+    background: linear-gradient(to top, #ADD100, #7B920A);  
+ 
 }
 
 .bl_form input {
@@ -51,7 +50,7 @@ ol, ul {list-style: none;}
     border: none;
     padding: 12px 35px;
     border-radius: 15px;
-    font-size: 12px;
+    
     outline: none;
 }
 
