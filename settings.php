@@ -5,9 +5,9 @@
  * Date: 29.04.16
  * Time: 06:43
  */
-
+    setcookie("new_password","");
 ?>
-<script>alert(document.cookie);</script>
+
 <!DOCTYPE html>
 <html >
 <head>
@@ -61,11 +61,11 @@
         <div class ="table_block">
         <br>
          <table >
-           <form>
-           <tr><td>Старий пароль:</td><td><input type="text" id="$current_password" name="" value=""></td></tr>
-           <tr><td>Новий пароль:</td><td><input type="text" id ="$new_password" name="" value=""></td></tr>
-           <tr><td>Повторіть пароль:</td><td><input type="text" id="$new_password_repeat" name="" value=""></td></tr>
-           <tr><td></td><td align="left"><input type="button" value="Сохранить пароль"></td></tr>
+           <form >
+           <tr><td>Старий пароль:</td><td><input type="password" id="current_password"  value=""></td></tr>
+           <tr><td>Новий пароль:</td><td><input type="password" id ="new_password"  value=""></td></tr>
+           <tr><td>Повторіть пароль:</td><td><input type="password" id="new_password_repeat"  value=""></td></tr>
+           <tr><td></td><td align="left"><input type="button" onclick="change_password()" value="Зберегти пароль"></td></tr>
            </form>
          </table>
         </div>
@@ -75,7 +75,7 @@
         <br>
          <table >
            <form>
-           <tr><td>Текущий адрес:</td><td>qwerty@bigmir.net</td></tr>
+           <tr><td>Текущий адрес:</td><td><?php echo $_COOKIE["email"]; ?></td></tr>
            <tr><td>Новый адрес:</td><td><input type="text" name="" value=""></td></tr>
            <tr><td></td><td align="left"><input type="button" value="Изменить адрес"></td></tr>
            </form>
@@ -86,10 +86,70 @@
 </div>
 </body>
 
-<script>
-    function change_password(){
-        if()
+<script >
+
+    function getCookie(name) {
+        var matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
     }
+
+    function getXmlHttp(){
+        var getXml;
+        try {
+            getXml = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch (e) {
+            try {
+                getXml = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (E) {
+                getXml = false;
+            }
+        }
+        if (!getXml && typeof XMLHttpRequest!='undefined') {
+            getXml = new XMLHttpRequest();
+        }
+        return getXml;
+    }
+
+    function change_password(){
+        document.cookie = "new_password=" + document.getElementById('new_password').value;
+        var req = getXmlHttp();
+        req.onreadystatechange = function() {
+            if (req.readyState == 4) {
+                if(req.status == 200) {
+                    alert(req.responseText);
+                    document.cookie = "password=" + getCookie('new_password');
+                    document.getElementById('current_password').value = "";
+                    document.getElementById('new_password').value = "";
+                    document.getElementById('new_password_repeat').value = "";
+                }
+            }
+        };
+        if(document.getElementById('new_password').value == document.getElementById('new_password_repeat').value) {
+            if(document.getElementById('current_password').value == getCookie('password')) {
+                req.open('GET', 'ajax/change_password.php', true);
+            }
+            else{
+                alert ("Старий пароль не вірний!!! Повторіть будь ласка ввід");
+                document.getElementById('current_password').value = "";
+                document.getElementById('new_password').value = "";
+                document.getElementById('new_password_repeat').value = "";
+            }
+        }
+        else {
+            alert("Паролі не співпадають!!! Повторіть будь ласка ввід");
+            document.getElementById('new_password').value = "";
+            document.getElementById('new_password_repeat').value = "";
+        }
+        req.send(null);  // отослать запрос
+        statusElem.innerHTML = 'Ожидаю ответа сервера...'
+    }
+
+    function change_email(){
+
+    }
+
 </script>
 
 

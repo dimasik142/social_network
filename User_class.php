@@ -69,7 +69,7 @@ class User
     }
 
     function connect_bd_OpenServer(){
-        $connection = new mysqli('localhost', 'root', '', 'User');
+        $connection = new mysqli('localhost', 'root', '', 'social_network');
         if ($connection->connect_error) {
             die('Connect Error :' . $connection->connect_error);
         }
@@ -133,8 +133,8 @@ class User
 
     function get_information_from_db($email,$password){
 
-        $connect = $this->connect_bd_MAMP(); // MAMP
-        //$connect = $this->connect_bd_OpenServer() //OpenServer
+        //$connect = $this->connect_bd_MAMP(); // MAMP
+        $connect = $this->connect_bd_OpenServer(); //OpenServer
         $sql_login = "SELECT * FROM logining_data";
 
         $id = 0;
@@ -173,8 +173,8 @@ class User
     }
 
     function set_information_to_database($name,$surename,$email,$password){
-        $connect = $this->connect_bd_MAMP(); // MAMP
-        //$connect = $this->connect_bd_OpenServer() //OpenServer
+        //$connect = $this->connect_bd_MAMP(); // MAMP
+        $connect = $this->connect_bd_OpenServer(); //OpenServer
 
         $connect->set_charset("utf8");
         $insert_sql_info = "INSERT INTO user_information (user_name, surename)" ."VALUES('{$name}', '{$surename}');";
@@ -184,8 +184,8 @@ class User
     }
 
     function search_email_in_databese($email){
-        $connect = $this->connect_bd_MAMP(); // MAMP
-        //$connect = $this->connect_bd_OpenServer() //OpenServer
+        //$connect = $this->connect_bd_MAMP(); // MAMP
+        $connect = $this->connect_bd_OpenServer(); //OpenServer
         $sql = "SELECT * FROM logining_data";
         $connect->set_charset("utf8");
         if ($res = $connect->query($sql)) {
@@ -200,12 +200,23 @@ class User
         return 1;
     }
 
-    function change_password ($email,$current_password,$new_password){
-        $connect =  $this->connect_bd_MAMP(); // MAMP
-        //$connect = $this->connect_bd_OpenServer() //OpenServer
-        $sql = "UPDATE logining_data SET password='{$new_password}' WHERE email = '{$email}' , password = '{$current_password}'";
-        $connect->query($sql);
+    function change_password($email,$new_password){
+        //$connect =  $this->connect_bd_MAMP(); // MAMP
+        $connect = $this->connect_bd_OpenServer(); //OpenServer
+        $connect->set_charset("utf8");
+
+        if ($this->search_email_in_databese($email) == 0) {
+            $sql = "UPDATE logining_data SET password = '{$new_password}' WHERE email = '{$email}'";
+            $connect->query($sql);
+            return 1;
+        }
+        else
+            return 0;
     }
+
+
+
+
 
 }
 ?>

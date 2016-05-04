@@ -13,6 +13,7 @@
         ));
         return matches ? decodeURIComponent(matches[1]) : undefined;
     }
+
     if(getCookie("email") == null || getCookie("password") == null)
         document.location.href = "index.php"
 </script>
