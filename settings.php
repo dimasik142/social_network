@@ -65,7 +65,7 @@
            <tr><td>Старий пароль:</td><td><input type="password" id="current_password"  value=""></td></tr>
            <tr><td>Новий пароль:</td><td><input type="password" id ="new_password"  value=""></td></tr>
            <tr><td>Повторіть пароль:</td><td><input type="password" id="new_password_repeat"  value=""></td></tr>
-           <tr><td></td><td align="left"><input type="button" onclick="change_password()" value="Зберегти пароль"></td></tr>
+           <tr><td></td><td align="left"><input type="button" onclick="change_password()" value="  Зберегти пароль  "></td></tr>
            </form>
          </table>
         </div>
@@ -75,9 +75,9 @@
         <br>
          <table >
            <form>
-           <tr><td>Текущий адрес:</td><td><?php echo $_COOKIE["email"]; ?></td></tr>
-           <tr><td>Новый адрес:</td><td><input type="text" name="" value=""></td></tr>
-           <tr><td></td><td align="left"><input type="button" value="Изменить адрес"></td></tr>
+           <tr><td> Email:</td><td><?php echo $_COOKIE["email"]; ?></td></tr>
+           <tr><td>Новий email:</td><td><input type="email" id="email_input" ></td></tr>
+           <tr><td></td><td align="left"><input type="button" onclick="change_email()" value="  Змінити email  "></td></tr>
            </form>
          </table>
 
@@ -142,12 +142,21 @@
             document.getElementById('new_password').value = "";
             document.getElementById('new_password_repeat').value = "";
         }
-        req.send(null);  // отослать запрос
-        statusElem.innerHTML = 'Ожидаю ответа сервера...'
+        req.send(null);
     }
 
     function change_email(){
-
+        document.cookie = "new_email=" + document.getElementById('email_input').value;
+        var reg = getXmlHttp();
+        reg.onreadystatechange = function() {
+            if (reg.readyState == 4) {
+                if(reg.status == 200) {
+                    alert(reg.responseText);
+                }
+            }
+        };
+        reg.open('GET', 'ajax/change_email.php', true);
+        reg.send(null);
     }
 
 </script>

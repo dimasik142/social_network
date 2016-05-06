@@ -23,13 +23,14 @@ class User
         '4' => "Lolman"
     );
 
-    function get_age()
-    {
+    function get_age(){
+        // Вивід віку
         return (2016 - $this->date_of_birth["year"]);
     }
 
     function set_information()
     {
+        // Вивід основної інформації про користувача
         echo '
         Місто:          ' . $this->city . '           </p>
         Дата народження:    ' . $this->date_of_birth["data"] . '.' . $this->date_of_birth["month"] . '.' . $this->date_of_birth["year"] . ' ( ' . $this->get_age() . '  років )                        </p>
@@ -39,6 +40,7 @@ class User
 
     function set_films()
     {
+        // Вивід фільмів
         echo "  ";
         for ($i = 0; $i < count($this->films); $i++) {
             echo $this->films[$i];
@@ -57,6 +59,7 @@ class User
 
     function set_photo()
     {
+        // Вивід фото
         $photo_file = "photo/lena3.jpg";
         $imsize = getimagesize($photo_file);
         $height = $imsize[1];
@@ -69,6 +72,7 @@ class User
     }
 
     function connect_bd_OpenServer(){
+        // Зєданання з базою данних на Windows
         $connection = new mysqli('localhost', 'root', '', 'social_network');
         if ($connection->connect_error) {
             die('Connect Error :' . $connection->connect_error);
@@ -77,6 +81,7 @@ class User
     }
 
     function connect_bd_MAMP(){
+        // Зєданання з базою данних на MAC OS
         $hostname = "localhost";
         $username="root";
         $password="root";
@@ -90,49 +95,8 @@ class User
         return $connection;
     }
 
-    private function get_information_from_db1($email,$password){
-        $connect = $this->connect_bd();
-        $sql = "SELECT * FROM Information";
-        if ($res = $connect->query($sql)) {
-            if ($res->num_rows > 0) {
-                $information_array = $res->fetch_all(MYSQLI_ASSOC);
-                foreach($information_array as $item):
-                    if(($email == $item['email']) && ($password == $item['password'])) {
-                        $this->name = $item['name'];
-                        $this->surename = $item['surename'];
-                        $this->sity = $item['sity'];
-                        $this->email = $item['email'];
-                        $this->password = $item['password'];
-                        return true;
-                    }
-                endforeach;
-            }
-        }
-    }
-
-    private function set_information_to_database1($name,$surename,$email,$password){
-        $connect = connect_bd();
-        $insert_sql = "INSERT INTO Information (name, surename, email, password)" ."VALUES('{$name}', '{$surename}', '{$email}', '{$password}');";
-        $connect->query($insert_sql);
-    }
-
-    private function search_email_in_databese1($email){
-        $connect = $this->connect_bd();
-        $sql = "SELECT * FROM Information";
-        if ($res = $connect->query($sql)) {
-            if ($res->num_rows > 0) {
-                $information_array = $res->fetch_all(MYSQLI_ASSOC);
-                foreach($information_array as $item):
-                    if ($email == $item['email'])
-                        return 0;
-                endforeach;
-            }
-        }
-        return 1;
-    }
-
     function get_information_from_db($email,$password){
-
+        // Зчитування інформації з бази даних
         //$connect = $this->connect_bd_MAMP(); // MAMP
         $connect = $this->connect_bd_OpenServer(); //OpenServer
         $sql_login = "SELECT * FROM logining_data";
@@ -173,6 +137,7 @@ class User
     }
 
     function set_information_to_database($name,$surename,$email,$password){
+        // Дадавання користувача до бази даних
         //$connect = $this->connect_bd_MAMP(); // MAMP
         $connect = $this->connect_bd_OpenServer(); //OpenServer
 
@@ -183,7 +148,8 @@ class User
         $connect->query($insert_sql_login);
     }
 
-    function search_email_in_databese($email){
+    function search_email_in_database($email){
+        // Перевірка користувача по вказаному Email
         //$connect = $this->connect_bd_MAMP(); // MAMP
         $connect = $this->connect_bd_OpenServer(); //OpenServer
         $sql = "SELECT * FROM logining_data";
@@ -201,6 +167,7 @@ class User
     }
 
     function change_password($email,$new_password){
+        // Функція зміни паролю користувача
         //$connect =  $this->connect_bd_MAMP(); // MAMP
         $connect = $this->connect_bd_OpenServer(); //OpenServer
         $connect->set_charset("utf8");
@@ -214,9 +181,19 @@ class User
             return 0;
     }
 
+    function change_email($email,$new_email){ // Функція зміни email користувача
+        //$connect =  $this->connect_bd_MAMP(); // MAMP
+        $connect = $this->connect_bd_OpenServer(); //OpenServer
+        $connect->set_charset("utf8");
 
-
-
+        if ($this->search_email_in_database($new_email) == 1) {
+            $sql = "UPDATE logining_data SET email = '{$new_email}' WHERE email = '{$email}'";
+            $connect->query($sql);
+            return 1;
+        }
+        else
+            return 0;
+}
 
 }
 ?>
