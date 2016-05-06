@@ -1,20 +1,36 @@
 .main_block{
-	font: 14pt/18pt bold sans-serif;
-	position:relative;
-	top:20px;
-	text-align :center;
-	width: 960px;
-    height: 665px;
+	font: 14px/18px Arial, Tahoma, sans-serif;
+	text-align: center;
+    color: #000000;
+    font-size: 12pt;
+    padding-top: 12px;
+    position: relative;
+    left: 240px;
+    top: 20px;
+    width: 480px;
+    height: 1225px;
+    border: 1px solid #D3C6C6;
+
 }
 
-h2{
-	border-bottom: 2px solid grey;
-	font: 16pt/15pt bold sans-serif;
-
-}
-
-.table_block{
+#part_settings{
 	position:relative;
+	font-size: 15px;
 	margin: auto;
-	width :400px;
+	width :350px;
+	height: 250px;
+	
 }
+.bl_form input {
+    padding-top: 10px;
+    background: rgba(255,255,255,0.80);
+    box-shadow: 0 1px 4px rgba(0,0,0,1);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 15px;
+    
+    outline: none;
+}
+#button{
+    color: black;
+    background: linear-gradient(to top, #ADD100, #7B920A);}
