@@ -1,5 +1,4 @@
 <?php
-
 include '../User_class.php';
 $user = new User();
 $result = $user->change_email($_COOKIE['email'],$_COOKIE['new_email']);

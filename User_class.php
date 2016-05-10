@@ -172,7 +172,7 @@ class User
         $connect = $this->connect_bd_OpenServer(); //OpenServer
         $connect->set_charset("utf8");
 
-        if ($this->search_email_in_databese($email) == 0) {
+        if ($this->search_email_in_database($email) == 0) {
             $sql = "UPDATE logining_data SET password = '{$new_password}' WHERE email = '{$email}'";
             $connect->query($sql);
             return 1;

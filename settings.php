@@ -8,7 +8,7 @@
     setcookie("new_password","");
     include "ajax/connect_bd.php";
 ?>
-
+<script>alert(document.cookie)</script>
 <!DOCTYPE html>
 <html >
 <head>
@@ -53,7 +53,7 @@
         <nav>
             <ul class="nav clearfix">
                 <li><a href="index.php">Моя сторінка</a></li>
-                <li><a href="biografi.php">Друзі</a></li>
+                <li><a href="friends.html">Друзі</a></li>
                 <li><a href="registration.php">Повідомлення</a></li>
                 <li><a href="login.php">Новини друзі</a></li>
                 <li><a href="settings.php">Налаштування</a></li>
@@ -63,85 +63,35 @@
     </header>
 <div class="main_window">
     <div class="main_block">
-<<<<<<< HEAD
-      <h2> Змінити пароль</h2>
-        <div class ="table_block">
-        <br>
-         <table >
-           <form >
-           <tr><td>Старий пароль:</td><td><input type="password" id="current_password"  value=""></td></tr>
-           <tr><td>Новий пароль:</td><td><input type="password" id ="new_password"  value=""></td></tr>
-           <tr><td>Повторіть пароль:</td><td><input type="password" id="new_password_repeat"  value=""></td></tr>
-           <tr><td></td><td align="left"><input type="button" onclick="change_password()" value="  Зберегти пароль  "></td></tr>
-=======
-      
-
-      <div id ="part_settings">
-         <h3> Змінити пароль</h3>
-         <br>
+         <h3> Змінити пароль</h3><br>
            <form class="bl_form" >
-           <input type="password" id="current_password"  value="" required placeholder="Старий пароль"><p><br>
-           <input type="password" id ="new_password"  value="" required placeholder="Новий пароль"><p><br>
-           <input type="password" id="new_password_repeat"  value="" required placeholder="Повторіть пароль"><p><br>  
-           <input type="button" id="button" onclick="change_password()" value="Зберегти пароль">
->>>>>>> e085c9d4f2a83a16ed0a495d958eeb9343aed71c
+            <input type="password" id="current_password"  value="" required placeholder="Старий пароль"><p><br>
+            <input type="password" id ="new_password"  value="" required placeholder="Новий пароль"><p><br>
+            <input type="password" id="new_password_repeat"  value="" required placeholder="Повторіть пароль"><p><br>
+            <input type="button" id="button" onclick="change_password()" value="Зберегти пароль">
            </form>
-      </div>
         <br>
-<<<<<<< HEAD
-         <table >
-           <form>
-           <tr><td> Email:</td><td><?php echo $_COOKIE["email"]; ?></td></tr>
-           <tr><td>Новий email:</td><td><input type="email" id="email_input" ></td></tr>
-           <tr><td></td><td align="left"><input type="button" onclick="change_email()" value="  Змінити email  "></td></tr>
-=======
-      
       
       <div id="part_settings">
-      <h3> Адресa вашої електронної пошти </h3>
-           <br>
+           <h3> Адресa вашої електронної пошти </h3><br>
            <form class="bl_form">
-           Поточна адреса:<?php echo $_COOKIE["email"]; ?><p><br>
-          <input type="text" name="" value="" required placeholder="Нова адреса"><p><br>
-           <input type="button" id="button" value="Змінити адресу"><p><br>
+                Поточна адреса:<?php echo $_COOKIE["email"]; ?><p><br>
+                <input type="text" id="email_input" value="" required placeholder="Нова адреса"><p><br>
+                <input type="button" id="button" onclick="change_email()" value="Змінити адресу">
            </form>
-      </div>
-      
-      
-      <div id="part_settings">
-      <h3> Змінити місто </h3><br>
-           <form class="bl_form">
-           Поточнe мicто:
-           <?php                                                                      //Пошук id користувача
-              $emails =  $_COOKIE["email"];
-              $ids = "SELECT id FROM logining_data where email = '$emails' ";
-              $result = mysql_query($ids); 
-              $id=mysql_result($result, 0);
-              $citys = "SELECT city FROM user_information where id = '$id' ";         //Пошук міста користувача (щоб видати на сторінці налашувань)
-              $result = mysql_query($citys);
-              $city = mysql_result($result, 0);         
-              echo "$city";
-           ?><p><br>
-          <input type="text" name="" value="" id="new_city" required placeholder="Нове місто(село)"><p><br>
-         <?php
-          echo '<input hidden type="button" id="ids" value='.$id.'>';
-          ?>
-           <input type="button" id="button" onclick="substitute('city',document.getElementById('new_city').value)" value="Змінити місто"><p><br>
->>>>>>> e085c9d4f2a83a16ed0a495d958eeb9343aed71c
-           </form>
-      </div>
-      
 
       <div id="part_settings">
-      <h3> Змінити Ім'я </h3><br>
+           <h3> Змінити місто </h3><br>
            <form class="bl_form">
-           <?php                                                                      
-              $names = "SELECT user_name FROM user_information where id = '$id' ";         //Пошук імені користувача (щоб видати у формі)
-              $result = mysql_query($names);
-              $name = mysql_result($result, 0);         
-              echo '<input type="text" name="" value="" id="new_name" required placeholder='.$name.'><p><br>';
-           ?><p><br>
-           <input type="button" id="button" onclick="substitute('user_name',document.getElementById('new_name').value)" value="Змінити І'мя"><p><br>
+                <input type="text" name="" value="" id="new_city" required placeholder="Нове місто(село)"><p><br>
+                <input type="button" id="button" onclick="" value="Змінити місто"><p>
+           </form>
+      </div>
+
+      <div id="part_settings">
+           <h3> Змінити Ім'я </h3><br>
+           <form class="bl_form">
+                <input type="button" id="button" onclick="" value="Змінити І'мя"><p><br>
            </form>
       </div>
 
@@ -149,17 +99,9 @@
       <div id="part_settings">
       <h3> Змінити прізвище </h3><br>
            <form class="bl_form">
-           <?php                                                                      
-              $surenames = "SELECT surename FROM user_information where id = '$id' ";         //Пошук імені користувача (щоб видати у формі)
-              $result = mysql_query($surenames);
-              $surename = mysql_result($result, 0);         
-              echo '<input type="text" name="" value="" id="new_surename" required placeholder='.$surename.'><p><br>';
-           ?><p><br>
-           <input type="button" id="button" onclick="substitute('surename',document.getElementById('new_surename').value)" value="Змінити прізвище"><p><br>
+                <input type="button" id="button" onclick="" value="Змінити прізвище"><p><br>
            </form>
-      </div> 
-
-
+      </div>
     </div>
 </div>
 </body>
@@ -202,6 +144,7 @@
                     document.getElementById('current_password').value = "";
                     document.getElementById('new_password').value = "";
                     document.getElementById('new_password_repeat').value = "";
+                    document.location.href = "settings.php";
                 }
             }
         };
@@ -231,6 +174,10 @@
             if (reg.readyState == 4) {
                 if(reg.status == 200) {
                     alert(reg.responseText);
+                    document.getElementById('email_input').value = "";
+                    document.cookie = "email=" + getCookie('new_email');
+
+
                 }
             }
         };
@@ -238,6 +185,8 @@
         reg.send(null);
     }
 
+
+/*
     function substitute(columns, new_values){   //Ф-ція зміни міста(поки лише міста)
         ids=document.getElementById('ids').value
         $.ajax(
@@ -249,7 +198,7 @@
         document.getElementById('new_city').value = ""
         document.getElementById('new_name').value = ""
         document.getElementById('new_surename').value = ""   
-    }
+    }*/
 </script>
 
 
