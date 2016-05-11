@@ -6,9 +6,8 @@
  * Time: 06:43
  */
     setcookie("new_password","");
-    include "ajax/connect_bd.php";
 ?>
-<script>alert(document.cookie)</script>
+<script> //alert(document.cookie)</script>
 <!DOCTYPE html>
 <html >
 <head>
@@ -63,7 +62,7 @@
     </header>
 <div class="main_window">
     <div class="main_block">
-         <h3> Змінити пароль</h3><br>
+         <h3> Змінити пароль</h3><br><br>
            <form class="bl_form" >
             <input type="password" id="current_password"  value="" required placeholder="Старий пароль"><p><br>
             <input type="password" id ="new_password"  value="" required placeholder="Новий пароль"><p><br>
@@ -73,7 +72,7 @@
         <br>
       
       <div id="part_settings">
-           <h3> Адресa вашої електронної пошти </h3><br>
+          <br><h3> Адресa вашої електронної пошти </h3><br><br>
            <form class="bl_form">
                 Поточна адреса:<?php echo $_COOKIE["email"]; ?><p><br>
                 <input type="text" id="email_input" value="" required placeholder="Нова адреса"><p><br>
@@ -81,28 +80,23 @@
            </form>
 
       <div id="part_settings">
-           <h3> Змінити місто </h3><br>
+          <br><br><h3> Змінити місто </h3><br>
            <form class="bl_form">
                 <input type="text" name="" value="" id="new_city" required placeholder="Нове місто(село)"><p><br>
-                <input type="button" id="button" onclick="" value="Змінити місто"><p>
+                <input type="button" id="button" onclick="change_city()" value="Змінити місто"><p>
            </form>
       </div>
 
       <div id="part_settings">
            <h3> Змінити Ім'я </h3><br>
            <form class="bl_form">
-                <input type="button" id="button" onclick="" value="Змінити І'мя"><p><br>
+               <input type="text" name="" value="" id="userName" required placeholder="Ім'я"><p><br>
+                   <input type="text" name="" value="" id="userSurename" required placeholder="Фамілія"><p><br>
+
+                   <input type="button" id="button" onclick="changeNameAndSurename()" value="Змінити "><p>
            </form>
       </div>
 
-      
-      <div id="part_settings">
-      <h3> Змінити прізвище </h3><br>
-           <form class="bl_form">
-                <input type="button" id="button" onclick="" value="Змінити прізвище"><p><br>
-           </form>
-      </div>
-    </div>
 </div>
 </body>
 
@@ -176,8 +170,7 @@
                     alert(reg.responseText);
                     document.getElementById('email_input').value = "";
                     document.cookie = "email=" + getCookie('new_email');
-
-
+                    document.location.href = "settings.php";
                 }
             }
         };
@@ -185,20 +178,39 @@
         reg.send(null);
     }
 
-
-/*
-    function substitute(columns, new_values){   //Ф-ція зміни міста(поки лише міста)
-        ids=document.getElementById('ids').value
-        $.ajax(
-            {
-                type: "GET",
-                url: "ajax/substitute.php",
-                data: "id="+ids+"&new_value="+new_values+"&column="+columns
-            });
-        document.getElementById('new_city').value = ""
-        document.getElementById('new_name').value = ""
-        document.getElementById('new_surename').value = ""   
-    }*/
+    function change_city() {
+        document.cookie = "new_city=" + document.getElementById('new_city').value;
+        var reg = getXmlHttp();
+        reg.onreadystatechange = function() {
+            if (reg.readyState == 4) {
+                if(reg.status == 200) {
+                    alert(reg.responseText);
+                    document.getElementById('new_city').value = "";
+                    document.cookie = "email=" + getCookie('new_email');
+                }
+            }
+        };
+        reg.open('GET', 'ajax/change_city.php', true);
+        reg.send(null);
+    }
+    
+    function changeNameAndSurename() {
+        document.cookie = "name=" + document.getElementById('userName').value;
+        document.cookie = "surename=" + document.getElementById('userSurename').value;
+        var reg = getXmlHttp();
+        reg.onreadystatechange = function() {
+            if (reg.readyState == 4) {
+                if(reg.status == 200) {
+                    alert(reg.responseText);
+                    document.getElementById('userName').value = "";
+                    document.getElementById('userSurename').value = "";
+                }
+            }
+        };
+        reg.open('GET', 'ajax/changeNameAndSurename.php', true);
+        reg.send(null);
+    }
+    
 </script>
 
 

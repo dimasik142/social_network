@@ -11,8 +11,8 @@ $user = new User();
 
 $email_logining = $_COOKIE["email_log"];
 $password_logining = $_COOKIE["password_log"];
-//$connect = $user->connect_bd_MAMP(); // MAMP
-$connect = $user->connect_bd_OpenServer(); //OpenServer
+$connect = $user->connect_bd_MAMP(); // MAMP
+//$connect = $user->connect_bd_OpenServer(); //OpenServer
 $result = false;
 $sql = "SELECT * FROM logining_data";
 if ($res = $connect->query($sql)) {

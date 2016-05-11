@@ -97,8 +97,8 @@ class User
 
     function get_information_from_db($email,$password){
         // Зчитування інформації з бази даних
-        //$connect = $this->connect_bd_MAMP(); // MAMP
-        $connect = $this->connect_bd_OpenServer(); //OpenServer
+        $connect = $this->connect_bd_MAMP(); // MAMP
+        //$connect = $this->connect_bd_OpenServer(); //OpenServer
         $sql_login = "SELECT * FROM logining_data";
 
         $id = 0;
@@ -136,10 +136,29 @@ class User
         }
     }
 
+    private function searchId($email,$password){
+        $connect =  $this->connect_bd_MAMP(); // MAMP
+        //$connect = $this->connect_bd_OpenServer(); //OpenServer
+        $connect->set_charset("utf8");
+        $sql_login = "SELECT * FROM logining_data";
+
+        if ($res = $connect->query($sql_login)) {
+            if ($res->num_rows > 0) {
+                $information_array = $res->fetch_all(MYSQLI_ASSOC);
+                foreach($information_array as $item):
+                    if(($email == $item['email']) && ($password == $item['password'])) {
+                        return $item['id'];
+                    }
+                endforeach;
+            }
+        }
+        return 0;
+    }
+
     function set_information_to_database($name,$surename,$email,$password){
         // Дадавання користувача до бази даних
-        //$connect = $this->connect_bd_MAMP(); // MAMP
-        $connect = $this->connect_bd_OpenServer(); //OpenServer
+        $connect = $this->connect_bd_MAMP(); // MAMP
+        //$connect = $this->connect_bd_OpenServer(); //OpenServer
 
         $connect->set_charset("utf8");
         $insert_sql_info = "INSERT INTO user_information (user_name, surename)" ."VALUES('{$name}', '{$surename}');";
@@ -150,8 +169,8 @@ class User
 
     function search_email_in_database($email){
         // Перевірка користувача по вказаному Email
-        //$connect = $this->connect_bd_MAMP(); // MAMP
-        $connect = $this->connect_bd_OpenServer(); //OpenServer
+        $connect = $this->connect_bd_MAMP(); // MAMP
+        //$connect = $this->connect_bd_OpenServer(); //OpenServer
         $sql = "SELECT * FROM logining_data";
         $connect->set_charset("utf8");
         if ($res = $connect->query($sql)) {
@@ -168,8 +187,8 @@ class User
 
     function change_password($email,$new_password){
         // Функція зміни паролю користувача
-        //$connect =  $this->connect_bd_MAMP(); // MAMP
-        $connect = $this->connect_bd_OpenServer(); //OpenServer
+        $connect =  $this->connect_bd_MAMP(); // MAMP
+        //$connect = $this->connect_bd_OpenServer(); //OpenServer
         $connect->set_charset("utf8");
 
         if ($this->search_email_in_database($email) == 0) {
@@ -182,8 +201,8 @@ class User
     }
 
     function change_email($email,$new_email){ // Функція зміни email користувача
-        //$connect =  $this->connect_bd_MAMP(); // MAMP
-        $connect = $this->connect_bd_OpenServer(); //OpenServer
+        $connect =  $this->connect_bd_MAMP(); // MAMP
+        //$connect = $this->connect_bd_OpenServer(); //OpenServer
         $connect->set_charset("utf8");
 
         if ($this->search_email_in_database($new_email) == 1) {
@@ -193,7 +212,34 @@ class User
         }
         else
             return 0;
-}
+    }
+
+    function change_city($city,$email,$password){ // Функція зміни email користувача
+        $connect =  $this->connect_bd_MAMP(); // MAMP
+        //$connect = $this->connect_bd_OpenServer(); //OpenServer
+        $connect->set_charset("utf8");
+        $id = $this->searchId($email,$password);
+        $sql = "UPDATE user_information SET city = '{$city}' WHERE id = '{$id}'";
+        $connect->query($sql);
+    }
+
+    function changeNameAndSurename($name,$surename,$email,$password){
+        $connect =  $this->connect_bd_MAMP(); // MAMP
+        //$connect = $this->connect_bd_OpenServer(); //OpenServer
+        $connect->set_charset("utf8");
+        $id = $this->searchId($email,$password);
+        if($name != ""){
+            $sql = "UPDATE user_information SET user_name = '{$name}' WHERE id = '{$id}'";
+            $connect->query($sql);
+            echo "Імя змінене  ";
+        }
+        if($surename != ""){
+            $sql = "UPDATE user_information SET surename = '{$surename}' WHERE id = '{$id}'";
+            $connect->query($sql);
+            echo "Фамілія змінена";
+        }
+        return true;
+    }
 
 }
 ?>
