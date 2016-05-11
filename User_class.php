@@ -57,18 +57,34 @@ class User
             echo '<div class ="title">                              ' . $this->name . ' ' . $this->surename . '                                                                                  			 </div>';
     }
 
-    function set_photo()
+    function set_photo($email,$password)
     {
-        // Вивід фото
-        $photo_file = "photo/lena3.jpg";
-        $imsize = getimagesize($photo_file);
-        $height = $imsize[1];
+        $connect =  $this->connect_bd_MAMP(); // MAMP
+        //$connect = $this->connect_bd_OpenServer(); //OpenServer
+        $connect->set_charset("utf8");
+        $id = $this->searchId($email,$password);
+        $sql = "SELECT * FROM user_information";
+
+        if ($res = $connect->query($sql)) {
+            if ($res->num_rows > 0) {
+                $information_array = $res->fetch_all(MYSQLI_ASSOC);
+                foreach($information_array as $item):
+                    if($item["id"] == $id) {
+                        return $item['photo'];
+                    }
+                endforeach;
+            }
+        }
+
+
+        /*$imsize = getimagesize($photo_file);
+        //$height = $imsize[1];
         $width = $imsize[0];
         if ($width < 250) {
-            echo '<p id ="lena"><img src="photo/lena3.jpg" id ="photo_low_quality"></p>';
+            echo '<p id ="lena"><img src="" id ="photo_low_quality"></p>';
         } else {
             echo '<p id ="lena"><img src="photo/lena3.jpg" id ="photo"></p>';
-        }
+        }*/
     }
 
     function connect_bd_OpenServer(){

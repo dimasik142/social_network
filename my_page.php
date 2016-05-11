@@ -70,9 +70,8 @@
         ?>
         <div>
             <div class ="div_photo">
-                <?php
-                $user->set_photo();
-                ?>
+                <p id ="lena"><img src="<?php echo $user->set_photo($_COOKIE["email"],$_COOKIE["password"]) ?>" id ="photo_low_quality"></p>
+
             </div>
             <div class="information">
                 <?php
@@ -85,7 +84,7 @@
         <image src="photo/play.png">
     </button>
 
-</div>
+</div><?php $user->set_photo($_COOKIE["email"],$_COOKIE["password"]) ?>
 </body>
 
 
