@@ -4,7 +4,6 @@ class User
     private $id = 0;
     private $name = "Олена";
     private $surename = "Телеш";
-    private $activity = true;
     private $city = "Київ";
     private $password = "pass";
     private $email = "email";
@@ -51,10 +50,7 @@ class User
 
     function set_name()
     {
-        if ($this->activity)
-            echo '<div class ="title">                              ' . $this->name . ' ' . $this->surename . '                                                                                      		 Online</div>';
-        else
-            echo '<div class ="title">                              ' . $this->name . ' ' . $this->surename . '                                                                                  			 </div>';
+        echo '<div class ="title">                        ' . $this->name . ' ' . $this->surename . '                                                			 </div>';
     }
 
     function set_photo($email,$password)

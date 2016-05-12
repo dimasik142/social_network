@@ -7,7 +7,7 @@
  */
     setcookie("new_password","");
 ?>
-<script> //alert(document.cookie)</script>
+
 <!DOCTYPE html>
 <html >
 <head>
@@ -52,7 +52,7 @@
         <nav>
             <ul class="nav clearfix">
                 <li><a href="index.php">Моя сторінка</a></li>
-                <li><a href="friends.html">Друзі</a></li>
+                <li><a href="friends.php">Друзі</a></li>
                 <li><a href="registration.php">Повідомлення</a></li>
                 <li><a href="login.php">Новини друзі</a></li>
                 <li><a href="settings.php">Налаштування</a></li>

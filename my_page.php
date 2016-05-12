@@ -56,7 +56,7 @@
         <nav>
             <ul class="nav clearfix">
                 <li><a href="index.php">Моя сторінка</a></li>
-                <li><a href="biografi.php">Друзі</a></li>
+                <li><a href="friends.php">Друзі</a></li>
                 <li><a href="registration.php">Повідомлення</a></li>
                 <li><a href="login.php">Новини друзі</a></li>
                 <li><a href="settings.php">Налаштування</a></li>
@@ -79,12 +79,12 @@
                 ?>
             </div>
         </div>
+        <button type="submit" class ="button_play">
+            <image src="photo/play.png">
+        </button>
     </div>
-    <button type="submit" class ="button_play">
-        <image src="photo/play.png">
-    </button>
 
-</div><?php $user->set_photo($_COOKIE["email"],$_COOKIE["password"]) ?>
+</div>
 </body>
 
 
