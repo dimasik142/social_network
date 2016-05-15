@@ -36,17 +36,8 @@ a, a:hover {text-decoration: none;}
 .text-right {text-align: right;}
 
 .container {
-	max-width: 959px;
+	max-width: 957px;
 	margin:0 auto;
-}
-
-.main_window{
-	border-top: 44px solid #fff;
-	border-left: 1px solid #D3C6C6;
-	border-right: 1px solid #D3C6C6;
-	width: 959px;
-	height: 1000px;
-
 }
 
 .nav,
@@ -106,6 +97,15 @@ a, a:hover {text-decoration: none;}
 		width: 50%;
 		height: auto;
 	}
+}
+
+.main_window{
+	border-top: 44px solid #fff;
+	border-left: 1px solid #D3C6C6;
+	border-right: 1px solid #D3C6C6;
+	width: 959px;
+	height: 1000px;
+	background: #fff;
 }
 
 .title{

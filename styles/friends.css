@@ -1,23 +1,35 @@
 #friend_block{
-
     float : left;
-	border-bottom: 1px solid #D3C6C6; 
+	border-bottom: 1px solid #D3C6C6;
 	border-right: 1px solid #D3C6C6;
 	width: 319px;
 	height: 280px;
 	
 }
 #picture{
-	width: 319px;
-	height: 180px;
+	 float: left;
+	 width: 150px;
+	 height: 200px;
+ }
+#user_data{
+	float: left;
+	width: 168px;
+	height: 200px;
+	text-align: center;
 }
+
 #activity{
 	text-align: center;
     word-spacing: 23px;
 	width: 319px;
-	height: 100px;
+	height: 80px;
+	float: left;
 }
 button#border{
 	border: 0px solid #fff;
     background-color: #fff;
+}
+#friendPhoto{
+	width: 100%;
+	height: auto;
 }

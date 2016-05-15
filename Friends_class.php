@@ -39,17 +39,52 @@ class friends
         return true;
     }
 
-    function getFriends(){
-        $this->getFriendsFromDataBase("dimasik1@mail.ua","60adarep");
-        
-        
-        
-        
-        echo $this->userFriends[1];
+    private function getInformationAboutFriend($id){
+        $user = new User();
+        $connect = $user->connect_bd_MAMP(); // MAMP
+        //$connect = $user->connect_bd_OpenServer(); //OpenServer
+        $connect->set_charset("utf8");
+        $sql = "SELECT * FROM user_information";
+        if ($res = $connect->query($sql)) {
+            if ($res->num_rows > 0) {
+                $information_array = $res->fetch_all(MYSQLI_ASSOC);
+                foreach($information_array as $item):
+                    if($id == $item['id']) {
+                        return array(
+                            'id' => $item['id'],
+                            'name' => $item['user_name'],
+                            'surename' => $item['surename'],
+                            'birthday' => $item['birthday'],
+                            'city' => $item['city'],
+                            'photo' => $item['photo']
+                        );
+                    }
+                endforeach;
+            }
+        }
     }
 
+    function getFriendsOnThePage($email,$password){
+        $this->getFriendsFromDataBase($email,$password);
+        if($this->userFriends[0] != 0) {
+            foreach ($this->userFriends as $item):
+                $mass = $this->getInformationAboutFriend($item);
+                include 'html/getFriend.html';
+            endforeach;
+        }
+    }
 
+    
 }
 
-$frend = new friends();
-$frend->getFriends();
+
+
+
+
+
+
+
+
+
+
+
