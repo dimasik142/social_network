@@ -101,7 +101,9 @@
 </body>
 
 <script >
-
+    if(getCookie("email") == null || getCookie("password") == null)
+        document.location.href = "index.php"
+    
     function getCookie(name) {
         var matches = document.cookie.match(new RegExp(
             "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"

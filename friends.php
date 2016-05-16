@@ -57,7 +57,9 @@
 </body>
 
 <script type="text/javascript">
-    alert(document.cookie);
+    if(getCookie("email") == null || getCookie("password") == null)
+        document.location.href = "index.php"
+
     function getXmlHttp(){
         var getXml;
         try {
