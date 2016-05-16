@@ -36,7 +36,7 @@ a, a:hover {text-decoration: none;}
 .text-right {text-align: right;}
 
 .container {
-	max-width: 960px;
+	max-width: 957px;
 	margin:0 auto;
 }
 
@@ -100,10 +100,10 @@ a, a:hover {text-decoration: none;}
 }
 
 .main_window{
-	border-top: 55px solid #fff; 
+	border-top: 44px solid #fff;
 	border-left: 1px solid #D3C6C6;
 	border-right: 1px solid #D3C6C6;
-	width: 960px;
+	width: 959px;
 	height: 1000px;
 	background: #fff;
 }

@@ -7,13 +7,11 @@ class User
     private $city = "Київ";
     private $password = "pass";
     private $email = "email";
-
     private $date_of_birth = array(
         "data" => 5,
         "month" => "03",
         "year" => 1997
     );
-
     private $films = array(
         '0' => "Spiderman",
         '1' => "Superman",
@@ -21,6 +19,7 @@ class User
         '3' => "Speadman",
         '4' => "Lolman"
     );
+
 
     function get_age(){
         // Вивід віку
@@ -60,7 +59,6 @@ class User
         $connect->set_charset("utf8");
         $id = $this->searchId($email,$password);
         $sql = "SELECT * FROM user_information";
-
         if ($res = $connect->query($sql)) {
             if ($res->num_rows > 0) {
                 $information_array = $res->fetch_all(MYSQLI_ASSOC);
@@ -71,16 +69,6 @@ class User
                 endforeach;
             }
         }
-
-
-        /*$imsize = getimagesize($photo_file);
-        //$height = $imsize[1];
-        $width = $imsize[0];
-        if ($width < 250) {
-            echo '<p id ="lena"><img src="" id ="photo_low_quality"></p>';
-        } else {
-            echo '<p id ="lena"><img src="photo/lena3.jpg" id ="photo"></p>';
-        }*/
     }
 
     function connect_bd_OpenServer(){
@@ -112,7 +100,6 @@ class User
         $connect = $this->connect_bd_MAMP(); // MAMP
         //$connect = $this->connect_bd_OpenServer(); //OpenServer
         $sql_login = "SELECT * FROM logining_data";
-
         $id = 0;
         if ($res = $connect->query($sql_login)) {
             if ($res->num_rows > 0) {
@@ -148,12 +135,11 @@ class User
         }
     }
 
-    private function searchId($email,$password){
+    function searchId($email,$password){
         $connect =  $this->connect_bd_MAMP(); // MAMP
         //$connect = $this->connect_bd_OpenServer(); //OpenServer
         $connect->set_charset("utf8");
         $sql_login = "SELECT * FROM logining_data";
-
         if ($res = $connect->query($sql_login)) {
             if ($res->num_rows > 0) {
                 $information_array = $res->fetch_all(MYSQLI_ASSOC);
@@ -171,7 +157,6 @@ class User
         // Дадавання користувача до бази даних
         $connect = $this->connect_bd_MAMP(); // MAMP
         //$connect = $this->connect_bd_OpenServer(); //OpenServer
-
         $connect->set_charset("utf8");
         $insert_sql_info = "INSERT INTO user_information (user_name, surename)" ."VALUES('{$name}', '{$surename}');";
         $insert_sql_login = "INSERT INTO logining_data (email, password)" ."VALUES('{$email}', '{$password}');";
@@ -202,7 +187,6 @@ class User
         $connect =  $this->connect_bd_MAMP(); // MAMP
         //$connect = $this->connect_bd_OpenServer(); //OpenServer
         $connect->set_charset("utf8");
-
         if ($this->search_email_in_database($email) == 0) {
             $sql = "UPDATE logining_data SET password = '{$new_password}' WHERE email = '{$email}'";
             $connect->query($sql);
@@ -216,7 +200,6 @@ class User
         $connect =  $this->connect_bd_MAMP(); // MAMP
         //$connect = $this->connect_bd_OpenServer(); //OpenServer
         $connect->set_charset("utf8");
-
         if ($this->search_email_in_database($new_email) == 1) {
             $sql = "UPDATE logining_data SET email = '{$new_email}' WHERE email = '{$email}'";
             $connect->query($sql);
@@ -252,6 +235,5 @@ class User
         }
         return true;
     }
-
 }
 ?>

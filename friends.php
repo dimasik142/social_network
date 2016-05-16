@@ -1,3 +1,8 @@
+<?php
+    include 'Friends_class.php';
+    $friend = new friends();
+?>
+
 <!DOCTYPE html>
 <html >
 <head>
@@ -32,39 +37,57 @@
 <div class="container">
     <header>
         <a href="#" id="touch-menu">Меню</a>
-        <nav>
-            <ul class="nav clearfix">
-                <li><a href="index.php">Моя сторінка</a></li>
-                <li>
-
-                </li>
-                <li><a href="biografi.php">Друзі</a></li>
-                <li><a href="mgu.php">Повідомлення</a></li>
-                <li><a href="photo.php">Спільноти</a></li>
-                <li><a href="bibliotek.php">Новини</a></li>
-                <li><a href="forum.php">Налаштування</a></li>
-            </ul>
-        </nav>
+        <ul class="nav clearfix">
+            <li><a href="index.php">Моя сторінка</a></li>
+            <li><a href="friends.php">Друзі</a></li>
+            <li><a href="registration.php">Повідомлення</a></li>
+            <li><a href="login.php">Новини друзі</a></li>
+            <li><a href="settings.php">Налаштування</a></li>
+            <li><a href="exit.php">Вихід</a></li>
+        </ul>
     </header>
     <div class="main_window">
 
-        <div id="friend_block">
-
-            <div id="picture">
-
-            </div>
-
-            <div id="activity">
-                <form>
-                    <button id="border"><img src="photo\remove_button.png" alt="Удолить" > </button>
-                    <a href="my_page.php"><img src="photo/mail.png" width="62" height="60" alt="Написать"></a>
-                    <button id="border"><img src="photo\play_button.png" alt="Смотреть" > </button>
-                </form>
-            </div>
-
-        </div>
+    <?php
+        $friend->getFriendsOnThePage($_COOKIE['email'],$_COOKIE['password']);
+    ?>
 
     </div>
-
 </div>
 </body>
+
+<script type="text/javascript">
+    alert(document.cookie);
+    function getXmlHttp(){
+        var getXml;
+        try {
+            getXml = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch (e) {
+            try {
+                getXml = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (E) {
+                getXml = false;
+            }
+        }
+        if (!getXml && typeof XMLHttpRequest!='undefined') {
+            getXml = new XMLHttpRequest();
+        }
+        return getXml;
+    }
+
+    function deleteFriend(id) {
+        document.cookie = "idDelete=" + id;
+        var reg = getXmlHttp();
+        reg.onreadystatechange = function() {
+            if (reg.readyState == 4) {
+                if(reg.status == 200) {
+                    document.cookie = "idDelete=" + "; expires=Thu, 01 Jan 1970 00:00:01 GMT";
+               }
+            }
+        };
+
+        reg.open('GET', 'ajax/deleteFriend.php', false);//В роботі з safari використовувати false
+        reg.send(null);
+    }
+
+</script>

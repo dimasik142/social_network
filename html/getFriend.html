@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="friend_block">
+    <div id="picture">
+        <p><img src="<?php if ($mass['photo'] != null){
+                        echo $mass['photo'];
+                        } else{
+                        echo $mass['photo']; }?>
+                    " id ="friendPhoto"></p>
+
+    </div>
+    <div id="user_data"><br><br>
+        <?php
+            echo $mass['name']. " " .$mass['surename']. "<br>";
+            echo " Місто : " .$mass['city']. "<br>" ;
+            if($mass['birthday'] != 0)
+                echo " ДН : " .$mass['birthday'];
+        ?>
+    </div>
+    <div id="activity">
+        <form>
+            <button id="border"><img src="photo\Remove.png" width="62" height="60" onclick="deleteFriend(<?php echo $mass['id'];?>)"> </button>
+            <a href="../mail.php"><img src="photo/mail.png" width="62" height="60" alt="Написать"></a>
+       </form>
+    </div>
+
+</div>
+</body>
+</html>
+
