@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html >
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title> Налаштування </title>
     <link rel="stylesheet" href="styles/index.css" />
@@ -102,8 +102,8 @@
 
 <script >
     if(getCookie("email") == null || getCookie("password") == null)
-        document.location.href = "index.php"
-    
+        document.location.href = "index.php";
+
     function getCookie(name) {
         var matches = document.cookie.match(new RegExp(
             "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -187,7 +187,6 @@
                 if(reg.status == 200) {
                     alert(reg.responseText);
                     document.getElementById('new_city').value = "";
-                    document.cookie = "email=" + getCookie('new_email');
                 }
             }
         };

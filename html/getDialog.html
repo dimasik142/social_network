@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="dialogue_inside.html" >
+    <div class="dialog">
+        <hr>
+        <img src="<?php echo $this->getPhoto($item) ?>" class="dialog_photo"><?php echo $nameArray["name"] ." ".$nameArray["surename"];?>
+						<span class="text">
+                            <br>
+                                <?php echo $lastMassage['massage'] ;?>
+					  </span>
+        <br><?php echo $lastMassage['time'] ;?>
+        <hr>
+    </div>
+</a>
+
+
+</body>
+</html>
