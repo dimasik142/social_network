@@ -1,0 +1,282 @@
+<<<<<<< HEAD:html/dialogue.html
+<!DOCTYPE html>
+<html >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+	<title> Діалоги </title>
+
+	<title> Моя сторінка </title>
+
+	<link rel="stylesheet" href="../styles/index1.css" />
+	<link rel="stylesheet" href="../styles/dialogue.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" ></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var touch = $('#touch-menu');
+			var menu = $('.nav');
+			$(touch).on('click', function(e) {
+				e.preventDefault();
+				menu.slideToggle();
+			});
+			$(window).resize(function(){
+				var wid = $(window).width();
+				if(wid > 760 && menu.is(':hidden')) {
+					menu.removeAttr('style');
+				}
+			});
+		});
+		$(document).ready(function(){
+		});
+	</script>
+
+</head>
+<body>
+<div class="container">
+	<header>
+		<a href="#" id="touch-menu">Меню</a>
+		<nav>
+			<ul class="nav clearfix">
+				<li><a href="../index.php">Моя сторінка</a></li>
+				<li>
+					<form name="search">
+					<input type="search" placeholder="Пошук друзів" size="15" style="margin-top: 10px">
+					</form>
+				</li>
+				<li><a href="biografi.php">Друзі</a></li>
+				<li><a href="mgu.php">Повідомлення</a></li>
+				<li><a href="photo.php">Спільноти</a></li>
+				<li><a href="bibliotek.php">Новини</a></li>
+				<li><a href="settings.html">Налаштування</a></li>
+			</ul>
+		</nav>
+	</header>
+		<div class="main_window">
+			<ul class="dialog_menu">
+				<li class="selected"><a href="#">Діалоги</a></li>
+				<li><a href="#">Перегляд діалогів</a></li>
+			</ul>
+			<br>
+
+
+			<a href="dialogue_inside.html" >
+				<div class="dialog">
+					<hr>
+					<img src="photo/avatar.png" class="dialog_photo">Ім'я співрозмовника
+						<span class="text">
+
+			<a href="dialogue_inside.html" >
+				<div class="dialog">
+					
+					<hr>
+					<img src="photo/avatar.png" class="dialog_photo">Ім'я співрозмовника
+						<span class="text">
+	
+
+					  Tекст повідомлення
+					  </span>
+					<br>online
+					<br>16.05.2016
+
+						<hr>
+ 				</div>
+ 			</a>
+
+
+
+
+					
+						<hr>
+
+			
+ 				</div>
+ 			</a>
+
+		</div>
+
+</div>
+=======
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title> Моя сторінка </title>
+	<link rel="stylesheet" href="styles/index1.css" />
+	<link rel="stylesheet" href="styles/dialogue.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" ></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var touch = $('#touch-menu');
+			var menu = $('.nav');
+			$(touch).on('click', function(e) {
+				e.preventDefault();
+				menu.slideToggle();
+			});
+			$(window).resize(function(){
+				var wid = $(window).width();
+				if(wid > 760 && menu.is(':hidden')) {
+					menu.removeAttr('style');
+				}
+			});
+		});
+		$(document).ready(function(){
+		});
+	</script>
+
+</head>
+<body>
+<div class="container">
+	<header>
+		<a href="#" id="touch-menu">Меню</a>
+		<nav>
+			<ul class="nav clearfix">
+				<li><a href="index.php">Моя сторінка</a></li>
+				<li>
+					<form name="search">
+					<input type="search" placeholder="Пошук друзів" size="15" style="margin-top: 10px">
+					</form>
+				</li>
+				<li><a href="biografi.php">Друзі</a></li>
+				<li><a href="mgu.php">Повідомлення</a></li>
+				<li><a href="photo.php">Спільноти</a></li>
+				<li><a href="bibliotek.php">Новини</a></li>
+				<li><a href="settings.html">Налаштування</a></li>
+			</ul>
+		</nav>
+	</header>
+		<div class="main_window">
+			<ul class="dialog_menu">
+				<li class="selected"><a href="#">Діалоги</a></li>
+				<li><a href="#">Перегляд діалогів</a></li>
+			</ul>
+			<br><br>
+			<a href="dialogue_inside.html" >
+				<div class="dialog">
+				<hr>
+					<div class="photo">
+					
+						<img src="photo/avatar.png" class="dialog_photo">
+					</div>
+					<div class="namedate">
+  						Ім'я співрозмовника
+						<br>
+						<br>16.05.2016
+					</div>
+					<div class="message">
+						Текст повідомлення
+					</div>
+						<hr>
+
+			
+ 				</div>
+ 			</a>
+		</div>
+
+</div>
+=======
+<!DOCTYPE html>
+<html >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+	<title> Діалоги </title>
+
+	<title> Моя сторінка </title>
+
+	<link rel="stylesheet" href="styles/index1.css" />
+	<link rel="stylesheet" href="styles/dialogue.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" ></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var touch = $('#touch-menu');
+			var menu = $('.nav');
+			$(touch).on('click', function(e) {
+				e.preventDefault();
+				menu.slideToggle();
+			});
+			$(window).resize(function(){
+				var wid = $(window).width();
+				if(wid > 760 && menu.is(':hidden')) {
+					menu.removeAttr('style');
+				}
+			});
+		});
+		$(document).ready(function(){
+		});
+	</script>
+
+</head>
+<body>
+<div class="container">
+	<header>
+		<a href="#" id="touch-menu">Меню</a>
+		<nav>
+			<ul class="nav clearfix">
+				<li><a href="index.php">Моя сторінка</a></li>
+				<li>
+					<form name="search">
+					<input type="search" placeholder="Пошук друзів" size="15" style="margin-top: 10px">
+					</form>
+				</li>
+				<li><a href="biografi.php">Друзі</a></li>
+				<li><a href="mgu.php">Повідомлення</a></li>
+				<li><a href="photo.php">Спільноти</a></li>
+				<li><a href="bibliotek.php">Новини</a></li>
+				<li><a href="settings.html">Налаштування</a></li>
+			</ul>
+		</nav>
+	</header>
+		<div class="main_window">
+			<ul class="dialog_menu">
+				<li class="selected"><a href="#">Діалоги</a></li>
+				<li><a href="#">Перегляд діалогів</a></li>
+			</ul>
+			<br>
+
+
+			<a href="dialogue_inside.html" >
+				<div class="dialog">
+					<hr>
+					<img src="photo/avatar.png" class="dialog_photo">Ім'я співрозмовника
+						<span class="text">
+
+			<a href="dialogue_inside.html" >
+				<div class="dialog">
+					
+					<hr>
+					<img src="photo/avatar.png" class="dialog_photo">Ім'я співрозмовника
+						<span class="text">
+	
+
+					  Tекст повідомлення
+					  </span>
+					<br>online
+					<br>16.05.2016
+
+						<hr>
+ 				</div>
+ 			</a>
+
+
+
+
+					
+						<hr>
+
+			
+ 				</div>
+ 			</a>
+
+		</div>
+
+</div>
+>>>>>>> 42cb766986cbbd04b4b92d3327be5d1372ee03dc
+>>>>>>> b3ba1e7dd17847231497674856b4e62b7ab6b501:dialogue.html
+</body>
