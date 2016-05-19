@@ -5,9 +5,8 @@
  * Date: 19.05.16
  * Time: 19:38
  */
-
-
-
+include 'massages_class.php';
+$massange = new Messages();
 ?>
 
 <!DOCTYPE html>
@@ -66,22 +65,13 @@
 			<br><br>
 			<hr>
 			<div class="history">
-
-
-			  <div class="message">
-			    <img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-</div>
-			  <div class="data"> 25.04.97</div><br></p>
-
-
-
+				<?php $massange->get25Massages(1,2);?>
 			</div>
 
 
 			<hr>
 			<div class="form_block">
-				<img src="photo/avatar.png" class="dialog_photo">
+				<img src="<?php echo $massange->photosArray['senderPhoto']?>" class="dialog_photo">
 				<form>
 					<textarea name="comment" cols="60" rows="4"> </textarea><br>
 
@@ -89,10 +79,7 @@
 					<input type="button"  onclick="sendMassage()" value="Отправить" name="send" class="button">
 
 
-					<a href="#" class="button">
-					<input type="button" value="Отправить" name="send" class="button">
 
-					</a>
 				</form>
 			</div>
 		</div>
@@ -103,7 +90,6 @@
 
 <script>
 	function sendMassage() {
-        alert ("123");
     }
 </script>
 </body>
