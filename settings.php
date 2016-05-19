@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html >
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title> Налаштування </title>
     <link rel="stylesheet" href="styles/index.css" />
@@ -53,8 +53,7 @@
             <ul class="nav clearfix">
                 <li><a href="index.php">Моя сторінка</a></li>
                 <li><a href="friends.php">Друзі</a></li>
-                <li><a href="registration.php">Повідомлення</a></li>
-                <li><a href="login.php">Новини друзі</a></li>
+                <li><a href="dialogue.php">Повідомлення</a></li>
                 <li><a href="settings.php">Налаштування</a></li>
                 <li><a href="exit.php">Вихід</a></li>
             </ul>
@@ -101,6 +100,8 @@
 </body>
 
 <script >
+    if(getCookie("email") == null || getCookie("password") == null)
+        document.location.href = "index.php";
 
     function getCookie(name) {
         var matches = document.cookie.match(new RegExp(
@@ -185,7 +186,6 @@
                 if(reg.status == 200) {
                     alert(reg.responseText);
                     document.getElementById('new_city').value = "";
-                    document.cookie = "email=" + getCookie('new_email');
                 }
             }
         };

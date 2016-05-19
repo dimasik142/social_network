@@ -33,3 +33,7 @@ button#border{
 	width: 100%;
 	height: auto;
 }
+.searchFriends{
+	height: 30px;
+	background: #7B920A;
+}

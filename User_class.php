@@ -19,7 +19,7 @@ class User
         '3' => "Speadman",
         '4' => "Lolman"
     );
-
+    public $dialogueArray  = array();
 
     function get_age(){
         // Вивід віку
@@ -235,5 +235,39 @@ class User
         }
         return true;
     }
+
+    function setDialogueArray($email,$password){
+        $connect =  $this->connect_bd_MAMP(); // MAMP
+        //$connect = $this->connect_bd_OpenServer(); //OpenServer
+        $connect->set_charset("utf8");
+        $id = $this->searchId($email,$password);
+        $sql = "SELECT * FROM user_information WHERE id = '{$id}'";
+        if ($res = $connect->query($sql)) {
+            if ($res->num_rows > 0) {
+                $information_array = $res->fetch_all(MYSQLI_ASSOC);
+                foreach($information_array as $item):
+                    $this->dialogueArray = explode(",",$item['dialogue']);
+                endforeach;
+            }
+        }
+    }
+
+    function addUserToDialogueArray($email,$password,$idAddsUser){
+        $connect =  $this->connect_bd_MAMP(); // MAMP
+        //$connect = $this->connect_bd_OpenServer(); //OpenServer
+        $connect->set_charset("utf8");
+        $id = $this->searchId($email,$password);
+        $this->setDialogueArray($email,$password);
+        foreach($this->dialogueArray as $item):
+            if($item == $idAddsUser)
+                return false;
+        endforeach;
+        $this->dialogueArray = implode(",",$this->dialogueArray). "," .$idAddsUser ;
+        $sql = "UPDATE user_information SET dialogue = '{$this->dialogueArray}' WHERE id = '{$id}'";
+        $connect->query($sql);
+        return true;
+    }
+
 }
 ?>
+
