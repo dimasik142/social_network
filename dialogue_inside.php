@@ -9,6 +9,7 @@
 
 
 ?>
+
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -23,6 +24,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" ></script>
 
 	<script type="text/javascript">
+
     $(document).ready(function(){
         var touch = $('#touch-menu');
         var menu = $('.nav');
@@ -58,7 +60,7 @@
 	</header>
 		<div class="main_window">
 			<ul class="dialog_menu">
-				<li ><a href="dialogue.html">Діалоги</a></li>
+				<li ><a href="html/dialogue.html">Діалоги</a></li>
 				<li class="selected"><a href="#">Перегляд діалогів</a></li>
 			</ul>
 			<br><br>
@@ -72,82 +74,7 @@
 </div>
 			  <div class="data"> 25.04.97</div><br></p>
 
-			  <div class="message">
-			    <img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-</div><br>
-			  <div class="data"> 25.04.97</div><br></p>
 
-			  <div class="message">
-                    <img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-</div><br>
-			  <div class="data"> 25.04.97</div><br></p>
-			  <div class="message">
-                    <img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-</div><br>
-			  <div class="data"> 25.04.97</div><br></p>
-			  <div class="message">
-                    <img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-</div><br>
-			  <div class="data"> 25.04.97</div><br></p>
-			  <div class="message">
-                    <img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-</div><br>
-			  <div class="data"> 25.04.97</div><br></p>
-			  <div class="message">
-                    <img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-</div><br>
-			  <div class="data"> 25.04.97</div><br></p>
-			  <div class="message">
-                    <img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-			  <div class="data"> 25.04.97</div><br></p>
-				<div class="message">
-					<img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-				<div class="data"> 25.04.97</div><br></p>
-				<div class="message">
-					<img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-				<div class="data"> 25.04.97</div><br></p>
-				<div class="message">
-					<img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-				<div class="data"> 25.04.97</div><br></p>
-				<div class="message">
-					<img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-				<div class="data"> 25.04.97</div><br></p>
-				<div class="message">
-					<img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-				<div class="data"> 25.04.97</div><br></p>
-				<div class="message">
-					<img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-				<div class="data"> 25.04.97</div><br></p>
-				<div class="message">
-					<img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-				<div class="data"> 25.04.97</div><br></p>
-				<div class="message">
-					<img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-				<div class="data"> 25.04.97</div><br></p>
 
 			</div>
 

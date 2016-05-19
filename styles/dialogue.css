@@ -110,8 +110,10 @@ hr{
 	
 	width: 100px;
 	height: 70px ;
-	
 	float: right;
 	text-align: center;
 	padding-top: 19px;
+}
+.footer {
+	position: absolute;
 }
