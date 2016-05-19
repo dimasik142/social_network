@@ -1,6 +1,6 @@
 <?php
-    include 'Friends_class.php';
-    $friend = new friends();
+include 'Friends_class.php';
+$friend = new friends();
 ?>
 
 <!DOCTYPE html>
@@ -46,13 +46,10 @@
         </ul>
     </header>
     <div class="main_window">
-    <div class="searchFriends">
-        <a href="searchNewFriends.php">Search new friends</a>
 
-    </div>
-    <?php
-        $friend->getFriendsOnThePage($_COOKIE['email'],$_COOKIE['password']);
-    ?>
+        <?php
+            $friend->getFriendsOnThePage($_COOKIE['email'],$_COOKIE['password']);
+        ?>
 
     </div>
 </div>
@@ -86,7 +83,7 @@
             if (reg.readyState == 4) {
                 if(reg.status == 200) {
                     document.cookie = "idDelete=" + "; expires=Thu, 01 Jan 1970 00:00:01 GMT";
-               }
+                }
             }
         };
 

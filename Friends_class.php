@@ -68,12 +68,16 @@ class friends
         $this->getFriendsFromDataBase($email,$password);
         if($this->userFriends[0] != "") {
             foreach ($this->userFriends as $item):
+                $notPhoto = "photo/notPhoto.jpg";
                 $mass = $this->getInformationAboutFriend($item);
                 include 'html/getFriend.html';
             endforeach;
         }
     }
 
+    function getNewFriendsOnThePage($email,$password){
+
+    }
     
 }
 

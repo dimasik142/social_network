@@ -49,7 +49,6 @@ $massage = new Messages();
                 <li><a href="index.php">Моя сторінка</a></li>
                 <li><a href="friends.php">Друзі</a></li>
                 <li><a href="dialogue.php">Повідомлення</a></li>
-                <li><a href="login.php">Новини друзі</a></li>
                 <li><a href="settings.php">Налаштування</a></li>
                 <li><a href="exit.php">Вихід</a></li>
             </ul>
