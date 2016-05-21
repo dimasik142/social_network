@@ -131,17 +131,14 @@ class Messages
         $user = new User();
         $user->setDialogueArray($email,$password);
         $userId = $user->searchId($email,$password);
-        foreach($user->dialogueArray as $item):
+         foreach($user->dialogueArray as $item):
             $nameArray = $this->getName($item);
             $lastMassage = $this->getLastMassage($userId,$item);
            include 'html/getDialog.html';
         endforeach;
     }
-
-
+    
 }
 
-//$massage = new Messages();
-//$massage->get25Massages(1,2);
 ?>
 

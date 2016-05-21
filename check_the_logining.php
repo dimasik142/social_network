@@ -22,7 +22,6 @@ if ($res = $connect->query($sql)) {
             $email = $item['email'];
             $password = $item['password'];
             if(($email == $email_logining) and ($password == $password_logining)){
-
                 setcookie('email', $email,time()+360000000);
                 setcookie('password', $password,time()+360000000);
                 $result = true;

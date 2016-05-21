@@ -37,5 +37,6 @@
         document.cookie = "password_log =" + document.getElementById('User_password').value ;
         document.cookie = "email_log =" + document.getElementById("User_email").value;
         document.location.href = "check_the_logining.php";
+        alert(document.cookie);
     }
 </script>

@@ -7,6 +7,7 @@
  */
 include 'massages_class.php';
 $massange = new Messages();
+$user = new User();
 ?>
 
 <!DOCTYPE html>
@@ -59,13 +60,18 @@ $massange = new Messages();
 	</header>
 		<div class="main_window">
 			<ul class="dialog_menu">
-				<li ><a href="html/dialogue.html">Діалоги</a></li>
+				<li ><a href="dialogue.php">Діалоги</a></li>
 				<li class="selected"><a href="#">Перегляд діалогів</a></li>
 			</ul>
 			<br><br>
 			<hr>
 			<div class="history">
-				<?php $massange->get25Massages(1,2);?>
+				<?php
+					$idRecipient = 2;
+					$idSender = $user->searchId($_COOKIE['email'],$_COOKIE['password']);
+					$massange->get25Massages($idSender,$idRecipient);
+
+				?>
 			</div>
 
 
@@ -73,23 +79,50 @@ $massange = new Messages();
 			<div class="form_block">
 				<img src="<?php echo $massange->photosArray['senderPhoto']?>" class="dialog_photo">
 				<form>
-					<textarea name="comment" cols="60" rows="4"> </textarea><br>
+					<textarea  cols="60" id ="newMassage" rows="4"> </textarea><br>
 
 
 					<input type="button"  onclick="sendMassage()" value="Отправить" name="send" class="button">
-
-
-
 				</form>
 			</div>
 		</div>
-
 </div>
 
 </body>
 
 <script>
+
+	function getXmlHttp(){
+		var getXml;
+		try {
+			getXml = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				getXml = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (E) {
+				getXml = false;
+			}
+		}
+		if (!getXml && typeof XMLHttpRequest!='undefined') {
+			getXml = new XMLHttpRequest();
+		}
+		return getXml;
+	}
+
 	function sendMassage() {
+		alert("12323");
+		document.cookie = "newMassage=" + document.getElementById('newMassage').value;
+		var reg = getXmlHttp();
+		reg.onreadystatechange = function() {
+			if (reg.readyState == 4) {
+				if(reg.status == 200) {
+					alert(reg.responseText);
+					document.getElementById('newMassage').value = "";
+				}
+			}
+		};
+		reg.open('GET', 'ajax/sendMassage.php', true);
+		reg.send(null);
     }
 </script>
-</body>
+
