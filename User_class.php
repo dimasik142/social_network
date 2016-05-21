@@ -268,6 +268,25 @@ class User
         return true;
     }
 
+    function checkEmailAndPassword($email_logining,$password_logining){
+        $connect = $this->connect_bd_MAMP(); // MAMP
+        //$connect = $this->connect_bd_OpenServer(); //OpenServer
+        $sql = "SELECT * FROM logining_data";
+        if ($res = $connect->query($sql)) {
+            if ($res->num_rows > 0) {
+                $information_array = $res->fetch_all(MYSQLI_ASSOC);
+                foreach($information_array as $item ):
+                    $email = $item['email'];
+                    $password = $item['password'];
+                    if(($email == $email_logining) and ($password == $password_logining)){
+                        return true;
+                    }
+                endforeach;
+            }
+        }
+        return false;
+    }
+
 }
 
 ?>

@@ -1,13 +1,12 @@
 <?php
-include 'User_class.php';
-$user = new User();
-setcookie("email_log","");
-setcookie("password_log","");
-$user->get_information_from_db($_COOKIE["email"],$_COOKIE["password"]);
+    //$user = new User();
+    setcookie("email_log","");
+    setcookie("password_log","");
+    $user->get_information_from_db($_COOKIE["email"],$_COOKIE["password"]);
 ?>
 
 <script>
-
+    
     function getCookie(name) {
         var matches = document.cookie.match(new RegExp(
             "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
