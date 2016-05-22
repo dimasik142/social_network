@@ -5,15 +5,19 @@
  * Date: 19.05.16
  * Time: 00:38
  */
-$usering = new User();
-$connect = $usering->connect_bd_MAMP(); // MAMP
+session_start();
+include '../User_class.php';
+$user = new User();
+$connect = $user->connect_bd_MAMP(); // MAMP
 //$connect = $usering->connect_bd_OpenServer(); //OpenServer
-echo  "22";
 $connect->set_charset("utf8");
-$idSender = $usering->searchId($_COOKIE['email'],$_COOKIE['password']);
-
-$today = date("Y-m-d H:i:s");
+$idSender = $user->searchId($_COOKIE['email'],$_COOKIE['password']);
+$idRecipient = $_SESSION['idRecipient'];
+//echo $idRecipient;
+$today = date("Y-m-d H:i");
+$today['12'] = $today['12'] + 1;
+ini_set('date.timezone' , "Europe/Kiev");
 date($today);
 echo $today;
-$sql = "INSERT INTO messages ('idSender', 'idRecipient', 'message' , 'time') VALUES ('{$idSender}', '{$idRecipient}', '{$_COOKIE['newMassage']}','{$today}')";
+$sql = "INSERT INTO messages VALUES ('{$idSender}', '{$idRecipient}', '{$_COOKIE['newMassage']}','{$today}')";
 $connect->query($sql);

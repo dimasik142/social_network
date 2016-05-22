@@ -5,9 +5,7 @@
         ));
         return matches ? decodeURIComponent(matches[1]) : undefined;
     }
-    if (getCookie("email") != null || getCookie("password" != null))
-        alert("Ви вже увійшли на свій акаунт, якщо ви хочете змінити користувача, то вийдіть будь ласка зі сторіки!!!!!!!");
-    document.location.href = "my_page.php"
+
 </script>
 
 <!DOCTYPE html>
@@ -38,7 +36,6 @@
         document.cookie = "email_log =" + document.getElementById("User_email").value;
         document.cookie = "password =" + document.getElementById('User_password').value ;
         document.cookie = "email =" + document.getElementById("User_email").value;
-
         document.location.href = "check_the_logining.php";
     }
 </script>

@@ -8,6 +8,7 @@
 include 'massages_class.php';
 $massange = new Messages();
 $user = new User();
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -68,6 +69,7 @@ $user = new User();
 			<div class="history">
 				<?php
 					$idRecipient = 2;
+					$_SESSION['idRecipient'] = $idRecipient;
 					$idSender = $user->searchId($_COOKIE['email'],$_COOKIE['password']);
 					$massange->get25Massages($idSender,$idRecipient);
 
@@ -92,6 +94,15 @@ $user = new User();
 
 <script>
 
+	document.onkeyup = function (e) {
+		e = e || window.event;
+		if (e.keyCode === 13) {
+			sendMassage();
+		}
+		// Отменяем действие браузера
+		return false;
+	};
+
 	function getXmlHttp(){
 		var getXml;
 		try {
@@ -110,7 +121,6 @@ $user = new User();
 	}
 
 	function sendMassage() {
-		alert("12323");
 		document.cookie = "newMassage=" + document.getElementById('newMassage').value;
 		var reg = getXmlHttp();
 		reg.onreadystatechange = function() {
