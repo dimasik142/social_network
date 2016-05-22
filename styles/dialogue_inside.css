@@ -1,3 +1,8 @@
+.block_button_dialog{
+padding-top: 11px;
+
+height: 50px;
+}
 ul.dialog_menu{
 	float:left;
 	margin: 2px;
@@ -22,32 +27,23 @@ ul.dialog_menu li a:hover{
 	color: white;
 	border-radius: 5px;
 }
-.main_window{
-
-	padding-top: 11px;
-}
 hr{
 	margin:0;
 	padding: 0;
-	width: 963px;
+	width: 958px;
 	color: grey;
 }
-.spisok{
-	
-	height: 50px;
-}
 .dialog{
-	margin: 0;
-	padding: 0;
 	position: relative;
-	top:0px;
-	height: 90px;
+	top:20px;
+	height: 80px;
 	background: #FFFFFF;
+	border: 1px green;
 }
 .dialog_photo{
 	border-radius: 5px;
 	float: left;
-	margin: 5px 5px 5px 5px;
+	margin: 3px;
 	width: 75 px;
 	height: 75px;
 	border-radius: 5px;
@@ -60,19 +56,35 @@ hr{
 	left: 100px;
 	background: grey;
 }
-.dialog:hover{
+.dialog a:hover{
 	background: #F5F5F5;
+}
+.message{
+	padding: 10px;	
+	height: auto;
+
+	width: 500px;
+	position: relative;
+	left:200px;
+    float: left;	
+    word-wrap: break-word;
+
 }
 .history{
 	padding: 10px;
-	background: #F5F5F5;
 	top: 200px;
-	height: 300px;
+	height: 69vh;
+	overflow: auto;
+	
 }
 .form_block{
 	margin: 3px;
-	height: 100px;
-	background: #F5F5F5;
+	height: 15vh;
+	width: 550px;
+	position: relative;
+	left:200px;
+	align-content: center;
+ 
 }
 #write{
 	height: 50px;
@@ -91,77 +103,6 @@ hr{
 }
 .dialog_photo_small{
     float: left;
-	margin: 3px 3px 3px 3px;
-	width: 50 px;
-	height: 50px;
-	border-radius: 5px;
-}
-.messag{
-	margin: 0;
-	left: 50px;
-	width: 200px;
-	height: 30px;
-	float: left;
-	position: relative;
-	top: 30px;
-	vertical-align: middle;
-}
-.namedate{
-	top:5px;
-	width: 150px;
-	height: 80 px;
-	vertical-align: middle;
-	float: left;
-	position: relative;
-}
-.photo{
-
-	height: 85px;
-	width: 85px;
-	float: left;
-}	
--------------------------------------------------
-/*.message{
-	padding: 10px;	
-	height: auto;
-	width: 500px;
-	position: relative;
-	left:200px;
-    float: left;	
-    word-wrap: break-word;
-}
-.history{
-	padding: 10px;
-	top: 200px;
-	height: 69vh;
-	overflow: auto;
-}
-.form_block{
-	margin: 3px;
-	height: 100px;
-	width: 550px;
-	position: relative;
-	left:200px;
-	align-content: center;
- 
-}
-#write{
-	height: 50px;
-	width: 200px;
-}
-.button{
-	height: 25px;
-	width: 80px;
-	border-radius: 5px;
-	color: white;
-	background: #515572;
-}
-.button:hover{
-	background: 	#3CB371;
-	color: red;
-}
-.dialog_photo_small{
-    float: left;
 
 	margin: 3px;
 	width: 50px;
@@ -170,9 +111,14 @@ hr{
 	border-radius: 5px;
 }
 .data{
+	
 	width: 100px;
 	height: 70px ;
+
 	float: right;
 	text-align: center;
 	padding-top: 19px;
-}*/
+}
+textarea{
+	resize: none;
+}
