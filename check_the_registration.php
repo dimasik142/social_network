@@ -4,7 +4,9 @@
  * User: Home
  * Date: 26.04.2016
  * Time: 0:29
- */
+ */    header('Location: my_page.php');
+setcookie("email", $_COOKIE["email_registration"]);
+setcookie("password", $_COOKIE["password_registration"]);
 include 'User_class.php';
 $user = new User();
 if($user->search_email_in_database($_COOKIE["email_registration"]) == 1) {
@@ -15,7 +17,6 @@ if($user->search_email_in_database($_COOKIE["email_registration"]) == 1) {
     setcookie("email_registration","");
     setcookie("surename_registration","");
     setcookie("password_registration","");
-    header('Location: my_page.php');
 }
 else{
     require "registration.php";
@@ -23,7 +24,7 @@ else{
 ?>
 
 <script type="text/javascript">
-    /*
+    /* // не використовувати js
     function getCookie(name) {
         var matches = document.cookie.match(new RegExp(
             "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"

@@ -5,10 +5,12 @@
  * Date: 19.05.16
  * Time: 19:38
  */
-
-
-
+include 'massages_class.php';
+$massange = new Messages();
+$user = new User();
+session_start();
 ?>
+
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -19,10 +21,11 @@
 	<title> Моя сторінка </title>
 
 	<link rel="stylesheet" href="styles/index1.css" />
-	<link rel="stylesheet" href="styles/dialogue.css" />
+	<link rel="stylesheet" href="styles/dialogue_inside.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" ></script>
 
 	<script type="text/javascript">
+
     $(document).ready(function(){
         var touch = $('#touch-menu');
         var menu = $('.nav');
@@ -57,126 +60,79 @@
 		</nav>
 	</header>
 		<div class="main_window">
-			<ul class="dialog_menu">
-				<li ><a href="dialogue.html">Діалоги</a></li>
+			<div class="block_button_dialog"><ul class="dialog_menu">
+				<li ><a href="dialogue.php">Діалоги</a></li>
 				<li class="selected"><a href="#">Перегляд діалогів</a></li>
-			</ul>
-			<br><br>
+			</ul></div>
+			
 			<hr>
 			<div class="history">
+				<?php
+					$idRecipient = 2;
+					$_SESSION['idRecipient'] = $idRecipient;
+					$idSender = $user->searchId($_COOKIE['email'],$_COOKIE['password']);
+					$massange->get25Massages($idSender,$idRecipient);
 
-
-			  <div class="message">
-			    <img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-</div>
-			  <div class="data"> 25.04.97</div><br></p>
-
-			  <div class="message">
-			    <img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-</div><br>
-			  <div class="data"> 25.04.97</div><br></p>
-
-			  <div class="message">
-                    <img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-</div><br>
-			  <div class="data"> 25.04.97</div><br></p>
-			  <div class="message">
-                    <img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-</div><br>
-			  <div class="data"> 25.04.97</div><br></p>
-			  <div class="message">
-                    <img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-</div><br>
-			  <div class="data"> 25.04.97</div><br></p>
-			  <div class="message">
-                    <img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-</div><br>
-			  <div class="data"> 25.04.97</div><br></p>
-			  <div class="message">
-                    <img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-</div><br>
-			  <div class="data"> 25.04.97</div><br></p>
-			  <div class="message">
-                    <img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-			  <div class="data"> 25.04.97</div><br></p>
-				<div class="message">
-					<img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-				<div class="data"> 25.04.97</div><br></p>
-				<div class="message">
-					<img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-				<div class="data"> 25.04.97</div><br></p>
-				<div class="message">
-					<img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-				<div class="data"> 25.04.97</div><br></p>
-				<div class="message">
-					<img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-				<div class="data"> 25.04.97</div><br></p>
-				<div class="message">
-					<img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-				<div class="data"> 25.04.97</div><br></p>
-				<div class="message">
-					<img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-				<div class="data"> 25.04.97</div><br></p>
-				<div class="message">
-					<img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-				<div class="data"> 25.04.97</div><br></p>
-				<div class="message">
-					<img src="photo/avatar.png" class="dialog_photo_small">
-текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текстd
-</div><br>
-				<div class="data"> 25.04.97</div><br></p>
-
+				?>
 			</div>
 
 
 			<hr>
 			<div class="form_block">
-				<img src="photo/avatar.png" class="dialog_photo">
+				<img src="<?php echo $massange->photosArray['senderPhoto']?>" class="dialog_photo">
 				<form>
-					<textarea name="comment" cols="60" rows="4"> </textarea><br>
+					<textarea  cols="60" id ="newMassage" rows="4"> </textarea><br>
 
 
 					<input type="button"  onclick="sendMassage()" value="Отправить" name="send" class="button">
-
-
-					<a href="#" class="button">
-					<input type="button" value="Отправить" name="send" class="button">
-
-					</a>
 				</form>
 			</div>
 		</div>
-
 </div>
 
 </body>
 
 <script>
+
+	document.onkeyup = function (e) {
+		e = e || window.event;
+		if (e.keyCode === 13) {
+			sendMassage();
+		}
+		// Отменяем действие браузера
+		return false;
+	};
+
+	function getXmlHttp(){
+		var getXml;
+		try {
+			getXml = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				getXml = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (E) {
+				getXml = false;
+			}
+		}
+		if (!getXml && typeof XMLHttpRequest!='undefined') {
+			getXml = new XMLHttpRequest();
+		}
+		return getXml;
+	}
+
 	function sendMassage() {
-        alert ("123");
+		document.cookie = "newMassage=" + document.getElementById('newMassage').value;
+		var reg = getXmlHttp();
+		reg.onreadystatechange = function() {
+			if (reg.readyState == 4) {
+				if(reg.status == 200) {
+					alert(reg.responseText);
+					document.getElementById('newMassage').value = "";
+				}
+			}
+		};
+		reg.open('GET', 'ajax/sendMassage.php', true);
+		reg.send(null);
     }
 </script>
-</body>
+
