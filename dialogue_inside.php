@@ -18,8 +18,6 @@ session_start();
 
 	<title> Діалог з користувачем </title>
 
-	<title> Моя сторінка </title>
-
 	<link rel="stylesheet" href="styles/index1.css" />
 	<link rel="stylesheet" href="styles/dialogue_inside.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" ></script>
@@ -72,16 +70,18 @@ session_start();
 					$_SESSION['idRecipient'] = $idRecipient;
 					$idSender = $user->searchId($_COOKIE['email'],$_COOKIE['password']);
 					$massange->get25Massages($idSender,$idRecipient);
-
 				?>
-			</div>
+				<div id = "newWriteMassageXML">
 
+				</div>
+			</div>
+			<input type="button" value="Едим вниз" onClick="scroldown()">
 
 			<hr>
 			<div class="form_block">
 				<img src="<?php echo $massange->photosArray['senderPhoto']?>" class="dialog_photo">
-				<form>
-					<textarea  cols="60" id ="newMassage" rows="4"> </textarea><br>
+				<form name = "newMassageForm">
+					<textarea  cols="60" id ="newMassage" name = "newMassage" rows="4"> </textarea><br>
 
 
 					<input type="button"  onclick="sendMassage()" value="Отправить" name="send" class="button">
@@ -120,19 +120,22 @@ session_start();
 		return getXml;
 	}
 
+
 	function sendMassage() {
 		document.cookie = "newMassage=" + document.getElementById('newMassage').value;
 		var reg = getXmlHttp();
 		reg.onreadystatechange = function() {
 			if (reg.readyState == 4) {
 				if(reg.status == 200) {
-					alert(reg.responseText);
 					document.getElementById('newMassage').value = "";
+					document.getElementById('newWriteMassageXML').innerHTML = reg.responseText;
+					scroldown();
 				}
 			}
 		};
 		reg.open('GET', 'ajax/sendMassage.php', true);
 		reg.send(null);
-    }
+
+	}
 </script>
 

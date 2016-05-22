@@ -131,13 +131,19 @@ class Messages
         $user = new User();
         $user->setDialogueArray($email,$password);
         $userId = $user->searchId($email,$password);
-         foreach($user->dialogueArray as $item):
-            $nameArray = $this->getName($item);
-            $lastMassage = $this->getLastMassage($userId,$item);
-           include 'html/getDialog.html';
-        endforeach;
+            foreach($user->dialogueArray as $item):
+                $nameArray = $this->getName($item);
+                $lastMassage = $this->getLastMassage($userId,$item);
+                include 'html/getDialog.html';
+            endforeach;
     }
-    
+
+    function writeMassage($idSender,$massage,$time){ // виводить на сторінку повідомлення щойно написане користуваччем
+
+        $picture = $this->getPhoto($idSender);
+        include 'html/getNewMassage.html';
+    }
+
 }
 
 ?>
