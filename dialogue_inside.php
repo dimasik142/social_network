@@ -21,7 +21,7 @@ session_start();
 	<title> Моя сторінка </title>
 
 	<link rel="stylesheet" href="styles/index1.css" />
-	<link rel="stylesheet" href="styles/dialogue.css" />
+	<link rel="stylesheet" href="styles/dialogue_inside.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" ></script>
 
 	<script type="text/javascript">
@@ -60,11 +60,11 @@ session_start();
 		</nav>
 	</header>
 		<div class="main_window">
-			<ul class="dialog_menu">
+			<div class="block_button_dialog"><ul class="dialog_menu">
 				<li ><a href="dialogue.php">Діалоги</a></li>
 				<li class="selected"><a href="#">Перегляд діалогів</a></li>
-			</ul>
-			<br><br>
+			</ul></div>
+			
 			<hr>
 			<div class="history">
 				<?php
