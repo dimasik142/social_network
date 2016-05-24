@@ -9,13 +9,15 @@
 include 'User_class.php';
 class Messages
 {
-    private $massengesArray = array(); // масив повідомлень, для відтворення їх на сторінку
-    private $massagesTimesArray = array(); // для часу написання повідомлення
-    private $massagesWriters = array(); // для позначення відправника повідомлення
+    public $massengesArray = array(); // масив всіх повідомлень, які показуються в діалозі з користувачем
+    private $massagesTimesArray = array(); // масив часу написання всіх повідомлень, які показуються в діалозі з користувачем
+    private $massagesWriters = array(); // масив з відправниками всіх повідомлень, які показуються в діалозі з користувачем
     public $photosArray = array(
         "senderPhoto"=>"",
         "recipientPhoto"=>""
-    ); // для показу діалогу між двома користувачами
+    ); // фото косристувачів для показу діалогу між двома користувачами
+    public $newMassagesArray = array(); // масив только что написаних сообщений
+
 
     private function setPhotosArray ($idSender,$idRecipient){ // повертае фотографії користувачів які спілкуються
         $user = new User();
@@ -77,7 +79,7 @@ class Messages
         $connect = $user->connect_bd_MAMP(); // MAMP
         //$connect = $user->connect_bd_OpenServer(); //OpenServer
         $connect->set_charset("utf8");
-        $sql = "SELECT * FROM messages WHERE ( idSender IN ('{$idSender}','{$idRecipient}')) AND (idRecipient IN ('{$idSender}','{$idRecipient}')) ORDER BY time ";
+        $sql = "SELECT * FROM messages WHERE ( idSender IN ('{$idSender}','{$idRecipient}')) AND (idRecipient IN ('{$idSender}','{$idRecipient}')) ORDER BY time DESC ";
         if ($res = $connect->query($sql)) {
             if ($res->num_rows > 0) {
                 $information_array = $res->fetch_all(MYSQLI_ASSOC);
@@ -95,7 +97,7 @@ class Messages
         $connect = $user->connect_bd_MAMP(); // MAMP
         //$connect = $user->connect_bd_OpenServer(); //OpenServer
         $connect->set_charset("utf8");
-        $sql = "SELECT * FROM messages WHERE ( idSender IN ('{$idSender}','{$idRecipient}')) AND (idRecipient IN ('{$idSender}','{$idRecipient}')) ORDER BY time DESC ";
+        $sql = "SELECT * FROM messages WHERE ( idSender IN ('{$idSender}','{$idRecipient}')) AND (idRecipient IN ('{$idSender}','{$idRecipient}')) ORDER BY time ASC ";
         if ($res = $connect->query($sql)) {
             if ($res->num_rows > 0) {
                 $information_array = $res->fetch_all(MYSQLI_ASSOC);
@@ -139,7 +141,6 @@ class Messages
     }
 
     function writeMassage($idSender,$massage,$time){ // виводить на сторінку повідомлення щойно написане користуваччем
-
         $picture = $this->getPhoto($idSender);
         include 'html/getNewMassage.html';
     }

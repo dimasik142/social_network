@@ -9,6 +9,12 @@ include 'massages_class.php';
 $massange = new Messages();
 $user = new User();
 session_start();
+$newMassagesArray = array();
+$newMassagesTimeArray = array();
+$newMassagesIdSenderArray = array();
+$_SESSION['newMassagesArray'] =$newMassagesArray;
+$_SESSION['newMassagesTimeArray'] =$newMassagesTimeArray;
+$_SESSION['newMassagesIdSenderArray'] =$newMassagesIdSenderArray;
 ?>
 
 <!DOCTYPE html>
@@ -75,16 +81,13 @@ session_start();
 
 				</div>
 			</div>
-			<input type="button" value="Едим вниз" onClick="scroldown()">
 
 			<hr>
 			<div class="form_block">
 				<img src="<?php echo $massange->photosArray['senderPhoto']?>" class="dialog_photo">
 				<form name = "newMassageForm">
 					<textarea  cols="60" id ="newMassage" name = "newMassage" rows="4"> </textarea><br>
-
-
-					<input type="button"  onclick="sendMassage()" value="Отправить" name="send" class="button">
+					<input type="button"  onclick="sendMassage() " value="Отправить" name="send" class="button">
 				</form>
 			</div>
 		</div>
@@ -102,6 +105,13 @@ session_start();
 		// Отменяем действие браузера
 		return false;
 	};
+
+	function getCookie(name) {
+		var matches = document.cookie.match(new RegExp(
+			"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+		));
+		return matches ? decodeURIComponent(matches[1]) : undefined;
+	}
 
 	function getXmlHttp(){
 		var getXml;
@@ -127,9 +137,10 @@ session_start();
 		reg.onreadystatechange = function() {
 			if (reg.readyState == 4) {
 				if(reg.status == 200) {
+					if(getCookie("newMassage") != "") {
+						document.getElementById('newWriteMassageXML').innerHTML = reg.responseText;
+					}
 					document.getElementById('newMassage').value = "";
-					document.getElementById('newWriteMassageXML').innerHTML = reg.responseText;
-					scroldown();
 				}
 			}
 		};
