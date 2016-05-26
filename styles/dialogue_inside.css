@@ -69,7 +69,7 @@ hr{
     word-wrap: break-word;
 
 }
-.history{
+#history{
 	padding: 10px;
 	top: 200px;
 	height: 69vh;

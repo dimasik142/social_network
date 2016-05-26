@@ -25,7 +25,7 @@
 	height: 80px;
 	float: left;
 }
-button#border{
+button.border{
 	border: 0px solid #fff;
     background-color: #fff;
 }

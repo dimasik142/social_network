@@ -1,6 +1,7 @@
 <?php
     include 'Friends_class.php';
     $friend = new friends();
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +49,6 @@
     <div class="main_window">
     <div class="searchFriends">
         <a href="searchNewFriends.php">Search new friends</a>
-
     </div>
     <?php
         $friend->getFriendsOnThePage($_COOKIE['email'],$_COOKIE['password']);
@@ -59,8 +59,9 @@
 </body>
 
 <script type="text/javascript">
+
     if(getCookie("email") == null || getCookie("password") == null)
-        document.location.href = "index.php"
+        document.location.href = "index.php";
 
     function getXmlHttp(){
         var getXml;

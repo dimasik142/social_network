@@ -145,6 +145,15 @@ class Messages
         include 'html/getNewMassage.html';
     }
 
+    function dialogueWithFriend(){
+        if(!$_COOKIE['idUserForDialogue'])
+            return false;
+        
+            
+        
+    }
+    
+    
 }
 
 ?>

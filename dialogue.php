@@ -7,8 +7,18 @@
  */
 include 'massages_class.php';
 $massage = new Messages();
-
 ?>
+
+<script>
+    function getCookie(name) {
+        var matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+    getCookie("idUserForDialogue");
+    document.cookie = "idUserForDialogue" + "=" + "; expires=Thu, 01 Jan 1970 00:00:01 GMT"; // функція видалення кука
+</script>
 
 <!DOCTYPE html>
 <html >
@@ -60,7 +70,8 @@ $massage = new Messages();
             <li><a href="#">Перегляд діалогів</a></li>
         </ul>
         <br>
-        <?php $massage->getMessengesList($_COOKIE['email'],$_COOKIE['password'])?>
+        <?php $massage->getMessengesList($_COOKIE['email'],$_COOKIE['password']);
+        ?>
 
 </div>
 </body>

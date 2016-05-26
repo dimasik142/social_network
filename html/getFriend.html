@@ -13,7 +13,6 @@
                         } else{
                         echo $notPhoto; }?>
                     " id ="friendPhoto"></p>
-
     </div>
     <div id="user_data"><br><br>
         <?php
@@ -25,12 +24,10 @@
     </div>
     <div id="activity">
         <form>
-            <button id="border"><img src="photo/Remove.png" width="62" height="60" onclick="deleteFriend(<?php echo $mass['id'];?>)"> </button>
-            <a href="../mail.php"><img src="photo/mail.png" width="62" height="60" alt="Написать"></a>
-       </form>
+            <button class="border"><img src="photo/Remove.png" width="62" height="60" onclick="deleteFriend(<?php echo $mass['id'];?>)"> </button>
+            <input type="button"  value="Написати" onClick='document.cookie = "idUserForDialogue=" + <?php echo $mass['id'];?> ; location.href="dialogue_inside.php"'>
+        </form>
     </div>
-
 </div>
 </body>
 </html>
-

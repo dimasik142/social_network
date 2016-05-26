@@ -4,7 +4,9 @@
  * User: Home
  * Date: 26.04.2016
  * Time: 0:29
- */    header('Location: my_page.php');
+ */
+
+header('Location: my_page.php');
 setcookie("email", $_COOKIE["email_registration"]);
 setcookie("password", $_COOKIE["password_registration"]);
 include 'User_class.php';
