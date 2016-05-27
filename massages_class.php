@@ -145,16 +145,55 @@ class Messages
         include 'html/getNewMassage.html';
     }
 
-    function dialogueWithFriend(){
-        if(!$_COOKIE['idUserForDialogue'])
-            return false;
-        
-            
-        
-    }
-    
-    
-}
+    function checkTheDialogueWithFriend($idRecipient,$email,$password){
+        $user = new User();
+        $connect = $user->connect_bd_MAMP(); // MAMP
+        //$connect = $user->connect_bd_OpenServer(); //OpenServer
+        $connect->set_charset("utf8");
+        $idSender = $user->searchId($email, $password);
+        $sql = "SELECT * FROM user_information WHERE id = '{$idSender}'";
+        $dialogue = array();
+        if ($res = $connect->query($sql)) {
+            if ($res->num_rows > 0) {
+                $information_array = $res->fetch_all(MYSQLI_ASSOC);
+                foreach($information_array as $item):
+                    $dialogue = explode(",",$item['dialogue']);
+                    break;
+                endforeach;
+            }
+        }
+        foreach ($dialogue as $item):
+            if($item == $idRecipient)
+                return true;
+        endforeach;
 
+        return false;
+    }
+
+    function addUserToTheDialogue($idRecipient,$email,$password){
+        $user = new User();
+        $connect = $user->connect_bd_MAMP(); // MAMP
+        //$connect = $user->connect_bd_OpenServer(); //OpenServer
+        $connect->set_charset("utf8");
+        $idSender = $user->searchId($email, $password);
+        $sql = "SELECT * FROM user_information WHERE id = '{$idSender}'";
+        $dialogueArray = array();
+        if ($res = $connect->query($sql)) {
+            if ($res->num_rows > 0) {
+                $information_array = $res->fetch_all(MYSQLI_ASSOC);
+                foreach($information_array as $item):
+                    $dialogueArray = explode(",",$item['dialogue']);
+                    break;
+                endforeach;
+            }
+        }
+        array_push($dialogueArray,$idRecipient );
+        $dialogueString =  implode(",",$dialogueArray);
+        $sql = "UPDATE user_information SET dialogue = '{$dialogueString}' WHERE id = '{$idSender}'";
+        $connect->query($sql);
+    }
+
+
+}
 ?>
 

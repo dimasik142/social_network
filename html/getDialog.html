@@ -6,17 +6,22 @@
 </head>
 <body>
 
-<a href="dialogue_inside.php" >
+<button onclick="document.cookie = 'dialogueWithFrientFromDialogue=' + <?php echo $item; ?>;
+location.href = 'dialogue_inside.php'">
     <div class="dialog">
         <hr>
-        <img src="<?php echo $this->getPhoto($item) ?>" class="dialog_photo"><?php echo $nameArray["name"] ." ".$nameArray["surename"];?>
-						<span class="text">
-                            <br>
-                                <?php echo $lastMassage['massage'] ;?>
-					  </span>
-        <br><?php echo $lastMassage['time'] ;?>
+        <div class="photo">
+            <img src="<?php echo $this->getPhoto($item) ?>"  class="dialog_photo">
+        </div>
+        <div class="namedate">
+            <?php echo $nameArray["name"] ." ".$nameArray["surename"];?>
+            <br><?php echo $lastMassage['time'] ;?>
+        </div>
+        <div class="messag">
+            <?php echo $lastMassage['massage'] ;?>
+        </div>
         <hr>
     </div>
-</a>
+</button>
 </body>
 </html>

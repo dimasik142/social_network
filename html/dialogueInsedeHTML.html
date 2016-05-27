@@ -52,14 +52,6 @@
         <hr>
         <div id="history">
             <?php
-					$idRecipient = 2;
-					//if ($_COOKIE['idMassageWitchTheFriend'] != null)
-					//	$idRecipient = $_COOKIE['idMassageWitchTheFriend'];
-					//setcookie('idMassageWitchTheFriend',"");
-					//$_SESSION['idFriendDialogue'] = "";
-					$_SESSION['idRecipient'] = $idRecipient;
-
-					$idSender = $user->searchId($_COOKIE['email'],$_COOKIE['password']);
             $massange->get25Massages($idSender,$idRecipient);
             ?>
             <div id = "newWriteMassageXML">

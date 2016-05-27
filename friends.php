@@ -59,7 +59,7 @@
 </body>
 
 <script type="text/javascript">
-
+    document.cookie = "idUserForDialogue" + "=" + "; expires=Thu, 01 Jan 1970 00:00:01 GMT"; // функція видалення кука
     if(getCookie("email") == null || getCookie("password") == null)
         document.location.href = "index.php";
 

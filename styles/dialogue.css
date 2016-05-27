@@ -29,7 +29,7 @@ ul.dialog_menu li a:hover{
 hr{
 	margin:0;
 	padding: 0;
-	width: 963px;
+	width: 954px;
 	color: grey;
 }
 .spisok{
@@ -48,7 +48,7 @@ hr{
 	border-radius: 5px;
 	float: left;
 	margin: 5px 5px 5px 5px;
-	width: 75 px;
+	width: 75px;
 	height: 75px;
 	border-radius: 5px;
 }
@@ -92,14 +92,14 @@ hr{
 .dialog_photo_small{
     float: left;
 	margin: 3px 3px 3px 3px;
-	width: 50 px;
+	width: 50px;
 	height: 50px;
 	border-radius: 5px;
 }
 .messag{
 	margin: 0;
 	left: 50px;
-	width: 200px;
+	width: 600px;
 	height: 30px;
 	float: left;
 	position: relative;
@@ -120,59 +120,3 @@ hr{
 	width: 85px;
 	float: left;
 }	
--------------------------------------------------
-/*.message{
-	padding: 10px;	
-	height: auto;
-	width: 500px;
-	position: relative;
-	left:200px;
-    float: left;	
-    word-wrap: break-word;
-}
-.history{
-	padding: 10px;
-	top: 200px;
-	height: 69vh;
-	overflow: auto;
-}
-.form_block{
-	margin: 3px;
-	height: 100px;
-	width: 550px;
-	position: relative;
-	left:200px;
-	align-content: center;
- 
-}
-#write{
-	height: 50px;
-	width: 200px;
-}
-.button{
-	height: 25px;
-	width: 80px;
-	border-radius: 5px;
-	color: white;
-	background: #515572;
-}
-.button:hover{
-	background: 	#3CB371;
-	color: red;
-}
-.dialog_photo_small{
-    float: left;
-
-	margin: 3px;
-	width: 50px;
-	height: 50px;
-    border: 1px solid blue;
-	border-radius: 5px;
-}
-.data{
-	width: 100px;
-	height: 70px ;
-	float: right;
-	text-align: center;
-	padding-top: 19px;
-}*/
