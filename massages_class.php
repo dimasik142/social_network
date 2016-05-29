@@ -7,6 +7,7 @@
  * Time: 20:09
  */
 include 'User_class.php';
+
 class Messages
 {
     public $massengesArray = array(); // масив всіх повідомлень, які показуються в діалозі з користувачем
@@ -17,8 +18,7 @@ class Messages
         "recipientPhoto"=>""
     ); // фото косристувачів для показу діалогу між двома користувачами
     public $newMassagesArray = array(); // масив только что написаних сообщений
-
-
+    
     private function setPhotosArray ($idSender,$idRecipient){ // повертае фотографії користувачів які спілкуються
         $user = new User();
         $connect = $user->connect_bd_MAMP(); // MAMP
@@ -79,14 +79,14 @@ class Messages
         $connect = $user->connect_bd_MAMP(); // MAMP
         //$connect = $user->connect_bd_OpenServer(); //OpenServer
         $connect->set_charset("utf8");
-        $sql = "SELECT * FROM messages WHERE ( idSender IN ('{$idSender}','{$idRecipient}')) AND (idRecipient IN ('{$idSender}','{$idRecipient}')) ORDER BY time DESC ";
+        $sql = "SELECT * FROM messages WHERE ( idSender IN ('{$idSender}','{$idRecipient}')) AND (idRecipient IN ('{$idSender}','{$idRecipient}')) ORDER BY dataTime DESC ";
         if ($res = $connect->query($sql)) {
             if ($res->num_rows > 0) {
                 $information_array = $res->fetch_all(MYSQLI_ASSOC);
                 foreach ($information_array as $item):
                     return array(
                         "massage" => $item['message'],
-                        "time" => $item['time']);
+                        "time" => $item['dataTime']);
                 endforeach;
             }
         }
@@ -97,13 +97,13 @@ class Messages
         $connect = $user->connect_bd_MAMP(); // MAMP
         //$connect = $user->connect_bd_OpenServer(); //OpenServer
         $connect->set_charset("utf8");
-        $sql = "SELECT * FROM messages WHERE ( idSender IN ('{$idSender}','{$idRecipient}')) AND (idRecipient IN ('{$idSender}','{$idRecipient}')) ORDER BY time ASC ";
+        $sql = "SELECT * FROM messages WHERE ( idSender IN ('{$idSender}','{$idRecipient}')) AND (idRecipient IN ('{$idSender}','{$idRecipient}')) ORDER BY dataTime ASC ";
         if ($res = $connect->query($sql)) {
             if ($res->num_rows > 0) {
                 $information_array = $res->fetch_all(MYSQLI_ASSOC);
                 foreach($information_array as $item):
                     array_push($this->massengesArray,$item['message']);
-                    array_push($this->massagesTimesArray,$item['time']);
+                    array_push($this->massagesTimesArray,$item['dataTime']);
                     array_push($this->massagesWriters,$item['idSender']);
                 endforeach;
             }
@@ -111,10 +111,16 @@ class Messages
     }
 
     function get25Massages($idSender,$idRecipient){
+        session_start();
         $this->setPhotosArray($idSender,$idRecipient);
         $this->setMassengesArray($idSender,$idRecipient);
         $numberMassage = 0;
         $numberElementsArray = count($this->massengesArray);
+        $_SESSION['firstMassagesTime']= $this->massagesTimesArray[0];
+        if($numberElementsArray <= 25)
+            $_SESSION['lastMassagesTime']= $this->massagesTimesArray[$numberElementsArray-1];
+        else
+            $_SESSION['lastMassagesTime']= $this->massagesTimesArray[25-1];
         for ($i  = 0; $i < 25 ;$i++) {
             if ($idSender == $this->massagesWriters[$i])
                 $picture = $this->photosArray['senderPhoto'];
@@ -145,7 +151,7 @@ class Messages
         include 'html/getNewMassage.html';
     }
 
-    function checkTheDialogueWithFriend($idRecipient,$email,$password){
+    function checkTheDialogueWithFriend($idRecipient,$email,$password){ // перевірка на наявність вибраного друга в діалогах
         $user = new User();
         $connect = $user->connect_bd_MAMP(); // MAMP
         //$connect = $user->connect_bd_OpenServer(); //OpenServer
@@ -170,7 +176,7 @@ class Messages
         return false;
     }
 
-    function addUserToTheDialogue($idRecipient,$email,$password){
+    function addUserToTheDialogue($idRecipient,$email,$password){ // додавання друга до діалогу
         $user = new User();
         $connect = $user->connect_bd_MAMP(); // MAMP
         //$connect = $user->connect_bd_OpenServer(); //OpenServer
@@ -193,7 +199,46 @@ class Messages
         $connect->query($sql);
     }
 
+    function searchNewMassangeFromFriend($idSender,$idRecipient,$lastMassageTime){ // оновлення списку повідомлень з користувачем
+        session_start();
+        $user = new User();
+        $connect = $user->connect_bd_MAMP(); // MAMP
+        //$connect = $user->connect_bd_OpenServer(); //OpenServer
+        $connect->set_charset("utf8");
+        $sql = "SELECT * FROM messages WHERE (idSender = '{$idRecipient}' AND idRecipient = '{$idSender}' AND dataTime > '{$lastMassageTime}' )";
+        if ($res = $connect->query($sql)) {
+            if ($res->num_rows > 0) {
+                $information_array = $res->fetch_all(MYSQLI_ASSOC);
+                //print_r($information_array);
+                foreach($information_array as $item):
+
+                    array_push($_SESSION['newMassagesArray'],$item['message'] );
+                    array_push($_SESSION['newMassagesTimeArray'],$item['dataTime'] );
+                    array_push($_SESSION['newMassagesIdSenderArray'],$item['idSender'] );
+
+                    $_SESSION['lastMassagesTime'] = $item['dataTime'];
+                endforeach;
+            }
+        }
+    }
+
 
 }
+    session_start();
+    $mas = new Messages();
+    //echo $_SESSION['firstMassagesTime'];
+    //echo $_SESSION['lastMassagesTime'];
+//    $mas->searchNewMassangeFromFriend(1,5,$_SESSION['lastMassagesTime']);
+//print_r($_SESSION);
+
+
+
+
+
+
+
+
+
+
 ?>
 

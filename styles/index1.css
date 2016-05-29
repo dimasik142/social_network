@@ -63,7 +63,7 @@ a, a:hover {text-decoration: none;}
 
 #touch-menu {display: none;}
 
-@media (max-width: 975px) {
+@media (max-width: 960px) {
 	header{
 		position: fixed;
 		top: 0;

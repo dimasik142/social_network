@@ -12,7 +12,7 @@ if($_COOKIE['newMassage'] != "") {
     $user = new User();
     $massage = new Messages();
     $connect = $user->connect_bd_MAMP(); // MAMP
-    //$connect = $usering->connect_bd_OpenServer(); //OpenServer
+    //$connect = $user->connect_bd_OpenServer(); //OpenServer
     $connect->set_charset("utf8");
     $idSender = $user->searchId($_COOKIE['email'], $_COOKIE['password']);
     $idRecipient = $_SESSION['idRecipient'];

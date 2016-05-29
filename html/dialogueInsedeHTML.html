@@ -52,7 +52,7 @@
         <hr>
         <div id="history">
             <?php
-            $massange->get25Massages($idSender,$idRecipient);
+                $massange->get25Massages($idSender,$idRecipient);
             ?>
             <div id = "newWriteMassageXML">
             </div>
@@ -70,10 +70,8 @@
 </div>
 
 </body>
+
 <script>
-    /**
-     * Created by dmitro on 26.05.16.
-     */
 
     document.onkeyup = function (e) {
         e = e || window.event;
@@ -108,7 +106,6 @@
         return getXml;
     }
 
-
     function sendMassage() {
         document.cookie = "newMassage=" + document.getElementById('newMassage').value;
         var reg = getXmlHttp();
@@ -136,7 +133,23 @@
     var block = document.getElementById("history");
     block.onscroll = function () {
         if(!this.scrollTop){
-            alert("228");
+            //alert("228");
         }
-    }
+    };
+
+    var timerId = setInterval(function() {
+        var reg = getXmlHttp();
+        reg.onreadystatechange = function() {
+            if (reg.readyState == 4) {
+                if(reg.status == 200) {
+                    document.getElementById('newWriteMassageXML').innerHTML = reg.responseText;
+                    scrollBottom();
+                }
+            }
+        };
+        reg.open('GET', 'ajax/refreshMassange.php', true);
+        reg.send(null);
+
+    }, 1000);
+
 </script>

@@ -16,7 +16,6 @@ session_start();
 	$_SESSION['newMassagesArray'] =$newMassagesArray;
 	$_SESSION['newMassagesTimeArray'] =$newMassagesTimeArray;
 	$_SESSION['newMassagesIdSenderArray'] =$newMassagesIdSenderArray;
-//$idRecipient = 3;
 if($_COOKIE['idUserForDialogue']) {
 	$idRecipient = $_COOKIE['idUserForDialogue'];
 	if(!$massange->checkTheDialogueWithFriend($idRecipient,$_COOKIE['email'] ,$_COOKIE['password'] )){
@@ -28,10 +27,6 @@ if ($_COOKIE['dialogueWithFrientFromDialogue']){
 }
 if(!$idRecipient)
 	echo "Виникла помилка з пошуком друга для діалогу";
-//if ($_COOKIE['idMassageWitchTheFriend'] != null)
-//	$idRecipient = $_COOKIE['idMassageWitchTheFriend'];
-//setcookie('idMassageWitchTheFriend',"");
-//$_SESSION['idFriendDialogue'] = "";
 $_SESSION['idRecipient'] = $idRecipient;
 
 $idSender = $user->searchId($_COOKIE['email'],$_COOKIE['password']);
@@ -40,8 +35,6 @@ if($idRecipient)
 else
 	require 'my_page.php';
 
-
-// написати функцію для обновленя повідомлень з другом
 //написати можливіть додавання повідолень зверху в діалозі з користувачем
 
 ?>

@@ -25,24 +25,6 @@ if($user->checkEmailAndPassword($email_logining,$password_logining)){
 }
 ?>
 
-<script type="text/javascript">
-    /*function getCookie(name) {
-        var matches = document.cookie.match(new RegExp(
-            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-        ));
-        return matches ? decodeURIComponent(matches[1]) : undefined;
-    }
-    function get_home_page(){
-        if((getCookie("email_log") == getCookie("email")) && (getCookie("password_log") == getCookie("password"))) {
-            if ((getCookie("email_log") != "") && (getCookie("password_log") != "")) {
-                document.location.href = "my_page.php";
-            }
-        }
-        else
-            alert("Користувач з таким логіном і паролем не зареєстрований. Перевірте правильність вводу даних, або зареєструйтесь. ");
-    }
-    get_home_page();
-</script>
 
 
 
