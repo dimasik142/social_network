@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="friend_block">
+    <div id="picture">
+        <p><img src="<?php if ($mass['photo'] != null){
+                        echo $mass['photo'];
+                        } else{
+                        echo $notPhoto; }?>
+                    " id ="friendPhoto"></p>
+    </div>
+    <div id="user_data"><br><br>
+        <?php
+            echo $mass['name']. " " .$mass['surename']. "<br>";
+        echo " Місто : " .$mass['city']. "<br>" ;
+        if($mass['birthday'] != 0)
+        echo " ДН : " .$mass['birthday'];
+        ?>
+    </div>
+    <div id="activity">
+        <form>
+            <button class="border"><img src="photo/Add.png" width="62" height="60" onclick="addFriend()"> </button>
+            <input type="button"  value="Написати" onClick='document.cookie = "idUserForDialogue=" + <?php echo $mass['id'];?> ; location.href="dialogue_inside.php"'>
+        </form>
+    </div>
+</div>
+</body>
+</html>

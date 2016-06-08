@@ -156,3 +156,17 @@ a, a:hover {text-decoration: none;}
 	color:#444;
 	line-height: 1.5;
 }
+.light{
+	margin: 5px 30%;
+
+}
+.lighter input[type=text]{
+	border:1px solid #d0d0d0;
+	background-color:#fcfcfc;
+}
+.rounded{
+	width:300px;
+	height: 25px;
+	font-size: 15px;
+
+}

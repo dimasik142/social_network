@@ -17,7 +17,9 @@ if($_COOKIE['idUserForDialogue'])
 $massage->searchNewMassangeFromFriend($idSender ,$idRecipient ,$_SESSION['lastMassagesTime'] );
 for ($i = 0;$i<count($_SESSION['newMassagesArray']);$i++){
     $massage->writeMassage($_SESSION['newMassagesIdSenderArray'][$i], $_SESSION['newMassagesArray'][$i], $_SESSION['newMassagesTimeArray'][$i] );
+    echo "<script> scrollBottom(); </script>";
 }
+
 
 
 

@@ -75,12 +75,80 @@ class friends
         }
     }
 
-    function getNewFriendsOnThePage($email,$password){
+    private function checkTheFriends($id){
+        foreach ($this->userFriends as $item):
+            if($item == $id)
+                return false;
+        endforeach;
+        return true;
+    }
 
+    function getNewFriendsOnThePage($email,$password){
+        $user = new User();
+        $connect = $user->connect_bd_MAMP(); // MAMP
+        //$connect = $user->connect_bd_OpenServer(); //OpenServer
+        $connect->set_charset("utf8");
+        $sql = "SELECT * FROM user_information";
+        //$this->getFriendsFromDataBase($email,$password);
+        $numberFriendsOnthePage = 0;
+        if ($res = $connect->query($sql)) {
+            if ($res->num_rows > 0) {
+                $information_array = $res->fetch_all(MYSQLI_ASSOC);
+                foreach($information_array as $item):
+                    if($this->checkTheFriends($item)) {
+                        if($numberFriendsOnthePage == 30)
+                            return true;
+                        $notPhoto = "photo/notPhoto.jpg";
+                        $mass = $this->getInformationAboutFriend($item['id']);
+                        include 'html/searchNewFriends.html';
+                        $numberFriendsOnthePage++;
+                    }
+                endforeach;
+            }
+        }
+    }
+
+    private function checkInformationAboutFriend($bdName,$bdSurename,$inputName,$inputSurename){
+        if($bdName == $inputName || $bdName == $inputSurename)
+            return true;
+        if($bdSurename == $inputName || $bdSurename == $inputSurename)
+            return true;
+        return false;
+    }
+
+    function searchSriendAsNameOrSurename($nameString,$email,$password){// функція для пошуку друзів за іменем чи фамілією
+        $mass = array();
+        $mass = explode(" ",$nameString);
+        $nameOrSurenameArray = array();
+        foreach ($mass as $item):
+            if ($item != "")
+                array_push($nameOrSurenameArray, $item);
+        endforeach;
+        $user = new User();
+        $connect = $user->connect_bd_MAMP(); // MAMP
+        //$connect = $user->connect_bd_OpenServer(); //OpenServer
+        $connect->set_charset("utf8");
+        $sql = "SELECT * FROM user_information";
+        $this->getFriendsFromDataBase($email,$password);
+        if ($res = $connect->query($sql)) {
+            if ($res->num_rows > 0) {
+                $information_array = $res->fetch_all(MYSQLI_ASSOC);
+                foreach($information_array as $item):
+                    if($this->checkInformationAboutFriend($item['user_name'],$item['surename'] ,$nameOrSurenameArray[0] , $nameOrSurenameArray[1])){
+                        //echo 'true';
+                        $notPhoto = "photo/notPhoto.jpg";
+                        $mass = $this->getInformationAboutFriend($item['id']);
+                        include 'html/searchNewFriends.html';
+                    }
+                endforeach;
+            }
+        }
     }
     
 }
 
+$friend = new friends();
+$friend->searchSriendAsNameOrSurename("Царук","dimasik1@mail.ua","60adarep");
 
 
 

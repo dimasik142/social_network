@@ -46,18 +46,25 @@ $friend = new friends();
         </ul>
     </header>
     <div class="main_window">
-
-        <?php
-            $friend->getFriendsOnThePage($_COOKIE['email'],$_COOKIE['password']);
-        ?>
-
+        <div class="light">
+            <form>
+                <span><input type="text" id="searchButton" class="search rounded" placeholder="Пошук друга..."></span>
+                <input type="button"  value="Шукати" onclick="searchFriend()"></span>
+            </form>
+        </div>
+        <div id = "newFriends">
+            <?php
+            $friend->getNewFriendsOnThePage($_COOKIE['email'],$_COOKIE['password']);
+            ?>
+        </div>
     </div>
 </div>
 </body>
+</html>
 
 <script type="text/javascript">
     if(getCookie("email") == null || getCookie("password") == null)
-        document.location.href = "index.php"
+        document.location.href = "index.php";
 
     function getXmlHttp(){
         var getXml;
@@ -76,19 +83,25 @@ $friend = new friends();
         return getXml;
     }
 
-    function deleteFriend(id) {
-        document.cookie = "idDelete=" + id;
+    function searchFriend() {
+        document.getElementById('newFriends').innerHTML = '';
+
+        //alert("12");
+        document.cookie = "nameAndSurename=" + document.getElementById("searchButton");
         var reg = getXmlHttp();
         reg.onreadystatechange = function() {
             if (reg.readyState == 4) {
                 if(reg.status == 200) {
-                    document.cookie = "idDelete=" + "; expires=Thu, 01 Jan 1970 00:00:01 GMT";
+                    //alert(reg.responseText);
+                    document.getElementById('newFriends').innerHTML = reg.responseText;
+                    document.cookie = "nameAndSurename=" + "; expires=Thu, 01 Jan 1970 00:00:01 GMT";
                 }
             }
         };
 
-        reg.open('GET', 'ajax/deleteFriend.php', false);//В роботі з safari використовувати false
+        reg.open('GET', 'ajax/searchNewFriends.php', true);//В роботі з safari використовувати false
         reg.send(null);
     }
+
 
 </script>

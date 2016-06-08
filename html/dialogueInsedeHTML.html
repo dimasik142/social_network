@@ -143,7 +143,9 @@
             if (reg.readyState == 4) {
                 if(reg.status == 200) {
                     document.getElementById('newWriteMassageXML').innerHTML = reg.responseText;
-                    scrollBottom();
+                    var block = document.getElementById("history");
+                    //if (block.scrollTop < 100)
+                    //    block.scrollTop = 9000;
                 }
             }
         };
