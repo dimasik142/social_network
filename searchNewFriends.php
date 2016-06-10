@@ -8,7 +8,7 @@ $friend = new friends();
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title> Мої друзі</title>
+    <title> Пошук друзів</title>
     <link rel="stylesheet" href="styles/index1.css" />
     <link rel="stylesheet" href="styles/friends.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" ></script>
@@ -84,10 +84,7 @@ $friend = new friends();
     }
 
     function searchFriend() {
-        document.getElementById('newFriends').innerHTML = '';
-
-        //alert("12");
-        document.cookie = "nameAndSurename=" + document.getElementById("searchButton");
+        document.cookie = "nameAndSurename=" + document.getElementById("searchButton").value;
         var reg = getXmlHttp();
         reg.onreadystatechange = function() {
             if (reg.readyState == 4) {
@@ -98,8 +95,22 @@ $friend = new friends();
                 }
             }
         };
-
         reg.open('GET', 'ajax/searchNewFriends.php', true);//В роботі з safari використовувати false
+        reg.send(null);
+    }
+
+    function addFriend(id) {
+        document.cookie = "idAdd=" + id;
+        var reg = getXmlHttp();
+        reg.onreadystatechange = function() {
+            if (reg.readyState == 4) {
+                if(reg.status == 200) {
+                    alert(reg.responseText);
+                    document.cookie = "idAdd=" + "; expires=Thu, 01 Jan 1970 00:00:01 GMT";
+                }
+            }
+        };
+        reg.open('GET', 'ajax/addFriend.php', false);//В роботі з safari використовувати false
         reg.send(null);
     }
 
