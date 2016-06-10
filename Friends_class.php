@@ -135,7 +135,6 @@ class friends
                 $information_array = $res->fetch_all(MYSQLI_ASSOC);
                 foreach($information_array as $item):
                     if($this->checkInformationAboutFriend($item['user_name'],$item['surename'] ,$nameOrSurenameArray[0] , $nameOrSurenameArray[1])){
-                        //echo 'true';
                         $notPhoto = "photo/notPhoto.jpg";
                         $mass = $this->getInformationAboutFriend($item['id']);
                         include 'html/searchNewFriends.html';
@@ -144,11 +143,46 @@ class friends
             }
         }
     }
-    
-}
 
-$friend = new friends();
-$friend->searchSriendAsNameOrSurename("Царук","dimasik1@mail.ua","60adarep");
+    function addFriend($idFriend,$email,$password){
+        //include 'User_class.php';
+        $user = new User();
+        $connect =  $user->connect_bd_MAMP(); // MAMP
+        //$connect = $user->connect_bd_OpenServer(); //OpenServer
+        $connect->set_charset("utf8");
+        $userId = $user->searchId($email,$password);
+        if($idFriend == $userId)
+            return false;
+        $friendsArray = array();
+        $sql = "SELECT * FROM user_information";
+        if ($res = $connect->query($sql)) {
+            if ($res->num_rows > 0) {
+                $information_array = $res->fetch_all(MYSQLI_ASSOC);
+                foreach($information_array as $item):
+                    if($userId == $item['id']) {
+                        $friendsArray = explode(",", $item['friends']);
+                        foreach ($friendsArray as $i):
+                            if($i == $idFriend )
+                                return false;
+                        endforeach;
+                        array_push($friendsArray,$idFriend );
+                    }
+                endforeach;
+            };
+        }
+        if(count($friendsArray) == 1){
+            $friendsString = implode("",$friendsArray);
+            $sql = "UPDATE user_information SET friends = '{$friendsString}' WHERE id = '{$userId}'";
+            $connect->query($sql);
+            return true;
+        }
+        $friendsString = implode(",",$friendsArray);
+        $sql = "UPDATE user_information SET friends = '{$friendsString}' WHERE id = '{$userId}'";
+        $connect->query($sql);
+        return true;
+    }
+
+}
 
 
 

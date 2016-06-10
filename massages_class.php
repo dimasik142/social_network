@@ -139,11 +139,17 @@ class Messages
         $user = new User();
         $user->setDialogueArray($email,$password);
         $userId = $user->searchId($email,$password);
-            foreach($user->dialogueArray as $item):
-                $nameArray = $this->getName($item);
-                $lastMassage = $this->getLastMassage($userId,$item);
-                include 'html/getDialog.html';
-            endforeach;
+
+
+        if($user->dialogueArray[0] == "")
+            return false;
+        foreach ($user->dialogueArray as $item):
+            $nameArray = $this->getName($item);
+            $lastMassage = $this->getLastMassage($userId, $item);
+            include 'html/getDialog.html';
+        endforeach;
+
+
     }
 
     function writeMassage($idSender,$massage,$time){ // виводить на сторінку повідомлення щойно написане користуваччем
@@ -194,6 +200,12 @@ class Messages
             }
         }
         array_push($dialogueArray,$idRecipient );
+        if(count($dialogueArray) == 1){
+            $dialogueString =  implode("",$dialogueArray);
+            $sql = "UPDATE user_information SET dialogue = '{$dialogueString}' WHERE id = '{$idSender}'";
+            $connect->query($sql);
+            return true;
+        }
         $dialogueString =  implode(",",$dialogueArray);
         $sql = "UPDATE user_information SET dialogue = '{$dialogueString}' WHERE id = '{$idSender}'";
         $connect->query($sql);
@@ -222,23 +234,7 @@ class Messages
         }
     }
 
-
 }
-    session_start();
-    $mas = new Messages();
-    //echo $_SESSION['firstMassagesTime'];
-    //echo $_SESSION['lastMassagesTime'];
-//    $mas->searchNewMassangeFromFriend(1,5,$_SESSION['lastMassagesTime']);
-//print_r($_SESSION);
-
-
-
-
-
-
-
-
-
 
 ?>
 
