@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title> Налаштування </title>
+    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="styles/settings.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" ></script>
+    <script src="js/settings.js" type="text/javascript" ></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var touch = $('#touch-menu');
+            var menu = $('.nav');
+
+            $(touch).on('click', function(e) {
+                e.preventDefault();
+                menu.slideToggle();
+            });
+            $(window).resize(function(){
+                var wid = $(window).width();
+                if(wid > 760 && menu.is(':hidden')) {
+                    menu.removeAttr('style');
+                }
+            });
+        });
+        $(document).ready(function(){
+
+        });
+    </script>
+
+    <script type="text/javascript">
+
+
+    </script>
+
+
+</head>
+<body>
+<div class="container">
+    <header>
+        <a href="#" id="touch-menu">Меню</a>
+        <nav>
+            <ul class="nav clearfix">
+                <li><a href="index.php">Моя сторінка</a></li>
+                <li><a href="friends.php">Друзі</a></li>
+                <li><a href="dialogue.php">Повідомлення</a></li>
+                <li><a href="settings.php">Налаштування</a></li>
+                <li><a href="exit.php">Вихід</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main_window">
+        <div class="main_block">
+            <h3> Змінити пароль</h3><br><br>
+            <form class="bl_form" >
+                <input type="password" id="current_password"  value="" required placeholder="Старий пароль"><p><br>
+                <input type="password" id ="new_password"  value="" required placeholder="Новий пароль"><p><br>
+                <input type="password" id="new_password_repeat"  value="" required placeholder="Повторіть пароль"><p><br>
+                <input type="button" id="button" onclick="change_password()" value="Зберегти пароль">
+            </form>
+            <br>
+
+            <div id="part_settings">
+                <br><h3> Адресa вашої електронної пошти </h3><br><br>
+                <form class="bl_form">
+                    Поточна адреса:<?php echo $_COOKIE["email"]; ?><p><br>
+                    <input type="text" id="email_input" value="" required placeholder="Нова адреса"><p><br>
+                    <input type="button" id="button" onclick="change_email()" value="Змінити адресу">
+                </form>
+
+                <div id="part_settings">
+                    <br><br><h3> Змінити місто </h3><br>
+                    <form class="bl_form">
+                        <input type="text" name="" value="" id="new_city" required placeholder="Нове місто(село)"><p><br>
+                        <input type="button" id="button" onclick="change_city()" value="Змінити місто"><p>
+                    </form>
+                </div>
+
+                <div id="part_settings">
+                    <h3> Змінити Ім'я </h3><br>
+                    <form class="bl_form">
+                        <input type="text" name="" value="" id="userName" required placeholder="Ім'я"><p><br>
+                        <input type="text" name="" value="" id="userSurename" required placeholder="Фамілія"><p><br>
+
+                        <input type="button" id="button" onclick="changeNameAndSurename()" value="Змінити "><p>
+                    </form>
+                </div>
+            </div>
+</body>
+

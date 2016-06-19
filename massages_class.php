@@ -140,13 +140,12 @@ class Messages
         $user->setDialogueArray($email,$password);
         $userId = $user->searchId($email,$password);
 
-
-        if($user->dialogueArray[0] == "")
-            return false;
         foreach ($user->dialogueArray as $item):
-            $nameArray = $this->getName($item);
-            $lastMassage = $this->getLastMassage($userId, $item);
-            include 'html/getDialog.html';
+            if($item != "") {
+                $nameArray = $this->getName($item);
+                $lastMassage = $this->getLastMassage($userId, $item);
+                include 'html/getDialog.html';
+            }
         endforeach;
 
 

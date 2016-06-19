@@ -24,24 +24,3 @@ else{
     require "registration.php";
 }
 ?>
-
-<script type="text/javascript">
-    /* // не використовувати js
-    function getCookie(name) {
-        var matches = document.cookie.match(new RegExp(
-            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-        ));
-        return matches ? decodeURIComponent(matches[1]) : undefined;
-    }
-
-    window.onload=function chenck_registration() {
-        if (getCookie("name_registration") == null && getCookie("surename_registration") == null
-            && getCookie("email_registration") == null && getCookie("password_registration") == null){
-            document.location.href = "my_page.php";
-        }
-        else{
-            alert("Користувач з таким email вже зареєстрований!!!");
-        }
-    };
-    //chenck_registration();
-</script>
