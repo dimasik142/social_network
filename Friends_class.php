@@ -170,7 +170,11 @@ class friends
                 endforeach;
             };
         }
+<<<<<<< HEAD
         if($friendsArray[0] == ""){
+=======
+        if(count($friendsArray) == 1){
+>>>>>>> 89b18c4c0d3c44e58a3b2b5a73eed3b746e55955
             $friendsString = implode("",$friendsArray);
             $sql = "UPDATE user_information SET friends = '{$friendsString}' WHERE id = '{$userId}'";
             $connect->query($sql);
